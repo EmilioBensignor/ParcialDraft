@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Equipo Estrella</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header class="columnAlignCenter">
+    <div>
+      <h1>Equipo Estrella</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="/web_app/index.html">Crear un Equipo</a></li>
+        <li><a href="/web_app/misEquipos.html">Mis Equipos</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="columnAlignCenter">
+    <section id="introduccion" class="columnAlignCenter">
+      <img src="/web_app/imagenes/Banner-Principal.webp" alt="Banner Principal Equipo Estrella">
+      <div class="columnAlignCenter">
+        <h2>¡Bienvenido a Equipo Estrella! ⚽🌟</h2>
+        <p>
+          ¿Tienes lo que se necesita para construir el equipo de fútbol perfecto? Elige jugadores de distintas ligas,
+          combina talentos únicos, ajusta estrategias y enfrenta desafíos para demostrar tu capacidad como entrenador.
+          Ya sea que busques velocidad, precisión o trabajo en equipo, aquí comienza tu camino hacia la alineación
+          estrella.
+        </p>
+        <p>
+          <strong>
+            ¡El terreno de juego te espera! Construye, compite y demuestra que tu equipo es el mejor. 🚀
+          </strong>
+        </p>
+        <button id="btnEmpezar" class="botonPrimario">Empezar</button>
+      </div>
+    </section>
+    <section id="seccionManager" class="columnAlignCenter">
+      <h2>Crea a tu Manager</h2>
+      <form>
+        <div>
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre">
+        </div>
+        <div>
+          <label for="apellido">Apellido</label>
+          <input type="text" id="apellido">
+        </div>
+        <div>
+          <label for="edad">Edad</label>
+          <input type="text" id="edad">
+        </div>
+        <div class="vestimenta">
+          <p>Vestimenta</p>
+          <div>
+            <div>
+              <input type="radio" name="vestimenta" id="traje" value="traje">
+              <label for="traje">Traje</label>
+            </div>
+            <div>
+              <input type="radio" name="vestimenta" id="remera" value="remera">
+              <label for="remera">Remera</label>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p>Avatar</p>
+          <button type="button" id="elegirAvatar" class="botonSecundario">Elegir avatar</button>
+        </div>
+        <button id="btnManager" class="botonPrimario">Crear Manager</button>
+      </form>
+    </section>
+    <section id="seccionEquipo" class="columnAlignCenter">
+      <h2>Crea tu Equipo</h2>
+      <p>Para poder seleccionar a tus jugadores, elige una formación.</p>
+      <form>
+        <div>
+          <label for="formacion">Formación</label>
+          <select>
+            <option value="">Seleccione</option>
+          </select>
+        </div>
+      </form>
+      <div>
+        CANCHA
+      </div>
+    </section>
+    <div id="modal">
+      MODAL
+    </div>
+  </main>
+  <footer class="columnAlignCenter">
+    Lucas bernath
+  </footer>
+  <script src="main.js"></script>
+</body>
+
+</html>
