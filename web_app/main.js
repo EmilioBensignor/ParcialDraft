@@ -43,7 +43,7 @@ function pasoDosFormacion() {
 function terminarEquipo(event) {
   event.preventDefault();
   seccionEquipo.style.display = "none";
-  window.location.href = "/web_app/misEquipos.html";
+  window.location.href = "web_app/misEquipos.html";
 }
 
 jugadores.forEach(jugador => {

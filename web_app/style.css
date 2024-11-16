@@ -270,7 +270,7 @@ form button {
   display: flex;
   flex-direction: column-reverse;
   gap: 1.5rem;
-  background-image: url("/web_app/imagenes/cancha.png");
+  background-image: url("web_app/imagenes/cancha.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
