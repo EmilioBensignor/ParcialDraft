@@ -4,6 +4,9 @@ const seccionManager = document.getElementById("seccionManager");
 const seccionEquipo = document.getElementById("seccionEquipo");
 const pasoUno = document.getElementById("pasoUno");
 const pasoDos = document.getElementById("pasoDos");
+const modalOverlay = document.getElementById("modalOverlay");
+
+const jugadores = document.querySelectorAll(".cancha div div");
 
 
 // Boton
@@ -42,3 +45,29 @@ function terminarEquipo(event) {
   seccionEquipo.style.display = "none";
   window.location.href = "/web_app/misEquipos.html";
 }
+
+jugadores.forEach(jugador => {
+  jugador.addEventListener("click", function () {
+    abrirModal();
+  });
+})
+
+function abrirModal() {
+  modalOverlay.style.display = "block";
+}
+
+function cerrarModal() {
+  modalOverlay.style.display = "none";
+}
+
+modalOverlay.addEventListener('click', function(event) {
+  if (event.target === modalOverlay) {
+    cerrarModal();
+  }
+});
+
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'Escape') {
+    cerrarModal();
+  }
+});
