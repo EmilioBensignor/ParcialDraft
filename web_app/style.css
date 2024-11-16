@@ -40,7 +40,9 @@ main {
 
 #seccionManager,
 #seccionEquipo,
-#modal {
+#pasoDos,
+#modal,
+#introduccion {
   display: none;
 }
 
@@ -98,21 +100,29 @@ h2 {
   font-size: 1.25rem;
 }
 
+h3 {
+  font-size: 1.125rem;
+}
+
 p {
   text-align: center;
   font-size: 0.875rem;
 }
 
-.botonPrimario, .botonSecundario {
+.botonPrimario,
+.botonSecundario {
+  width: max-content;
   border-radius: 999px;
   border: none;
   box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.08), 0px 3px 4px rgba(0, 0, 0, 0.1), 0px 1px 4px -1px rgba(0, 0, 0, 0.1);
   font-weight: bold;
+  font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s;
 }
 
 .botonPrimario {
+  align-self: center;
   background-color: var(--color-primario);
   color: var(--color-fondo);
   padding: 1rem 2rem;
@@ -137,6 +147,7 @@ p {
 /* Introduccion */
 
 #introduccion {
+  display: flex;
   padding: 0;
 }
 
@@ -168,7 +179,8 @@ form div label {
   font-weight: 500;
 }
 
-form div input {
+form div input,
+form div select {
   border: 0.5px solid var(--color-letra);
   border-radius: 9px;
   padding: 0.35rem 0.5rem;
@@ -180,7 +192,7 @@ form p {
   font-weight: 500;
 }
 
-.vestimenta > div {
+.vestimenta>div {
   flex-direction: row;
   gap: 1rem;
 }
@@ -193,6 +205,397 @@ form button {
   margin-top: 0.75rem;
 }
 
-footer {
-  grid-area: footer;
+#pasoUno>p {
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 400;
+  margin-bottom: 0.75rem;
 }
+
+#pasoDos {
+  align-items: center;
+  gap: 1rem;
+}
+
+.cancha {
+  width: 18rem;
+  height: 23.5rem;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 1.5rem;
+  background-image: url("/web_app/imagenes/cancha.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 1.25rem;
+}
+
+.cancha div button {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  background-color: var(--color-terciario);
+  box-shadow: 0px 4px 10px rgba(255, 215, 0, 0.03), 0px 0px 2px rgba(255, 215, 0, 0.6), 0px 2px 6px -1px rgba(255, 215, 0, 0.12);
+  border: none;
+  font-weight: 500;
+  font-size: 0.75rem;
+  margin-top: 0;
+  cursor: pointer;
+}
+
+.porteria {
+  align-items: center;
+}
+
+.defensa,
+.mediocampo,
+.delantera {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.mediocampista,
+.extremo {
+  justify-content: center;
+}
+
+.mediocampistaOfensivo,
+.delanteroCentral {
+  margin-bottom: 2rem;
+}
+
+.finalEquipo {
+  align-items: center;
+}
+
+.valoracion {
+  flex-direction: row;
+  align-items: center;
+}
+
+.valoracion p {
+  font-size: 1.5rem;
+  color: var(--color-terciario);
+  text-shadow: 0.75px 0.75px 1px var(--color-letra);
+}
+
+footer {
+  background-color: var(--color-secundario);
+  color: var(--color-fondo);
+  grid-area: footer;
+  padding: 1rem;
+}
+
+@media (width >=480px) {
+
+  h1 {
+    font-size: 1.625rem;
+  }
+
+  h2 {
+    font-size: 1.375rem;
+  }
+
+  #introduccion img {
+    max-height: 275px;
+    object-fit: cover;
+  }
+
+  #pasoUno>p {
+    font-size: 1rem;
+  }
+
+  .cancha {
+    width: 20rem;
+    height: 26rem;
+    gap: 2.25rem;
+  }
+
+  .mediocampistaOfensivo, .delanteroCentral {
+    margin-bottom: 2.5rem;
+  }
+}
+
+@media (width >=600px) {
+
+  header,
+  section,
+  footer {
+    padding: 2rem;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  #introduccion img {
+    max-height: 275px;
+    object-fit: cover;
+  }
+
+  #introduccion div {
+    max-width: 540px;
+    gap: 1rem;
+    padding: 0;
+    margin: 2rem;
+  }
+
+  form {
+    max-width: 540px;
+    gap: 1rem;
+  }
+
+  form div {
+    gap: 0.625rem;
+  }
+
+  form button {
+    margin-top: 0;
+  }
+
+  .cancha {
+    width: 22rem;
+    height: 28rem;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .cancha div button {
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (width >=700px) {
+  .botonPrimario {
+    font-size: 1.25rem;
+  }
+
+  .botonSecundario {
+    font-size: 1.125rem;
+  }
+
+  header nav ul {
+    gap: 1.25rem;
+  }
+
+  header nav ul li a {
+    font-size: 1.125rem;
+  }
+
+  #introduccion img {
+    max-height: 370px;
+  }
+
+  .cancha {
+    width: 26rem;
+    height: 34rem;
+    gap: 3.5rem;
+  }
+
+  .cancha div button {
+    width: 4rem;
+    height: 4rem;
+    font-size: 1.125rem;
+  }
+
+  .mediocampistaOfensivo, .delanteroCentral {
+    margin-bottom: 2.25rem;
+  }
+}
+
+@media (width >=850px) {
+  h1 {
+    font-size: 1.875rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  h3 {
+    font-size: 1.35rem;
+  }
+
+  p,
+  label,
+  form p,
+  select,
+  option {
+    font-size: 1.125rem;
+  }
+
+  form div input,
+  form div select {
+    font-size: 1rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  #introduccion img {
+    max-height: 420px;
+  }
+
+  #introduccion div,
+  section {
+    gap: 1.5rem;
+  }
+
+  #introduccion div,
+  form {
+    max-width: 650px;
+  }
+
+  #pasoDos {
+    gap: 2rem;
+  }
+
+  .cancha {
+    width: 30rem;
+    height: 38rem;
+    gap: 3.75rem;
+    padding: 1.25rem 2rem;
+  }
+
+  .cancha div button {
+    width: 4.5rem;
+    height: 4.5rem;
+    font-size: 1.25rem;
+  }
+
+  .mediocampistaOfensivo, .delanteroCentral {
+    margin-bottom: 3rem;
+  }
+
+  .extremo {
+    justify-content: end;
+  }
+
+  .valoracion p {
+    font-size: 1.75rem;
+  }
+}
+
+@media (width >=992px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.875rem;
+  }
+
+  header nav ul li a {
+    font-size: 1.25rem;
+  }
+
+  #introduccion img {
+    max-height: 500px;
+  }
+
+  .cancha {
+    width: 32rem;
+    height: 42rem;
+    gap: 4.5rem;
+    padding: 1.75rem 2rem;
+  }
+
+  .cancha div button {
+    width: 5rem;
+    height: 5rem;
+    font-size: 1.375rem;
+  }
+
+  .mediocampista {
+    justify-content: end;
+  }
+
+  .mediocampistaOfensivo, .delanteroCentral {
+    margin-bottom: 2.5rem;
+  }
+}
+
+@media (width >=1080px) {
+
+  #introduccion div,
+  section {
+    gap: 2rem;
+  }
+
+  section {
+    padding: 2.5rem 3rem;
+  }
+
+  h1 {
+    font-size: 2.25rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+  }
+
+  .botonPrimario,
+  .botonSecundario {
+    font-size: 1.325rem;
+  }
+
+  .formEquipo {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  #pasoUno {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  #pasoDos {
+    flex-direction: row;
+    position: relative;
+  }
+
+  .cancha {
+    width: 80%;
+    height: 58rem;
+    gap: 8rem;
+    padding: 2.5rem 2.75rem;
+  }
+
+  .cancha div button {
+    width: 5.5rem;
+    height: 5.5rem;
+    font-size: 1.5rem;
+  }
+
+  .mediocampistaOfensivo, .delanteroCentral {
+    margin-bottom: 3.5rem;
+  }
+
+  .finalEquipo {
+    align-self: start;
+    position: sticky;
+    top: 10rem;
+  }
+
+  .valoracion p {
+    font-size: 2rem;
+  }
+}
+
+/* Responsive 1080px */

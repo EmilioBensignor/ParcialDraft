@@ -80,17 +80,75 @@
     </section>
     <section id="seccionEquipo" class="columnAlignCenter">
       <h2>Crea tu Equipo</h2>
-      <p>Para poder seleccionar a tus jugadores, elige una formación.</p>
-      <form>
-        <div>
-          <label for="formacion">Formación</label>
-          <select>
-            <option value="">Seleccione</option>
-          </select>
+      <form class="formEquipo">
+        <div id="pasoUno">
+          <p>Para poder seleccionar a tus jugadores, elige una formación.</p>
+          <div>
+            <label for="formacion">Formación</label>
+            <select id="formacion">
+              <option value="">Seleccione</option>
+              <option value="1">4-3-3</option>
+              <option value="2">4-4-2</option>
+              <option value="3">4-1-2-1-2</option>
+            </select>
+          </div>
+          <button id="confirmarFormacion" type="button" class="botonPrimario">Confirmar</button>
+        </div>
+        <div id="pasoDos">
+          <div class="cancha">
+            <div class="porteria">
+              <div class="portero">
+                <button type="button">POR</button>
+              </div>
+            </div>
+            <div class="defensa">
+              <div class="lateralIzquierdo">
+                <button type="button">LI</button>
+              </div>
+              <div class="centralIzquierdo">
+                <button type="button">DFC</button>
+              </div>
+              <div class="centralDerecho">
+                <button type="button">DFC</button>
+              </div>
+              <div class="lateralDerecho">
+                <button type="button">LD</button>
+              </div>
+            </div>
+            <div class="mediocampo">
+              <div class="mediocampista">
+                <button type="button">MC</button>
+              </div>
+              <div class="mediocampistaOfensivo">
+                <button type="button">MCO</button>
+              </div>
+              <div class="mediocampista">
+                <button type="button">MC</button>
+              </div>
+            </div>
+            <div class="delantera">
+              <div class="extremo">
+                <button type="button">EI</button>
+              </div>
+              <div class="delanteroCentral">
+                <button type="button">DC</button>
+              </div>
+              <div class="extremo">
+                <button type="button">ED</button>
+              </div>
+            </div>
+          </div>
+          <div class="finalEquipo">
+            <div class="valoracion">
+              <h3>Valoracion</h3>
+              <p>90</p>
+            </div>
+            <button id="btnEquipo" type="submit" class="botonPrimario">Terminar Equipo</button>
+          </div>
         </div>
       </form>
-      <div>
-        CANCHA
+      <div id="">
+
       </div>
     </section>
     <div id="modal">
@@ -98,7 +156,7 @@
     </div>
   </main>
   <footer class="columnAlignCenter">
-    Lucas bernath
+    Lucas Bernath
   </footer>
   <script src="main.js"></script>
 </body>
