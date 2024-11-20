@@ -132,7 +132,6 @@ p {
 }
 
 .botonSecundario {
-  width: max-content;
   border: 2px solid var(--color-secundario);
   background: none;
   color: var(--color-secundario);

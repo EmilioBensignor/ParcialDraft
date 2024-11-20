@@ -31,6 +31,7 @@ function empezar() {
 
 function crearManager(event) {
   event.preventDefault();
+  // Valiacion de formulario
   seccionManager.style.display = "none";
   seccionEquipo.style.display = "flex";
 }
