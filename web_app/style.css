@@ -34,10 +34,6 @@ footer {
   margin: 0 auto;
 }
 
-main {
-  align-self: flex-start;
-}
-
 #seccionManager,
 #seccionEquipo,
 #pasoDos,
@@ -84,6 +80,7 @@ h1 {
 /* Main generales */
 
 main {
+  align-self: flex-start;
   grid-area: main;
 }
 
