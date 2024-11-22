@@ -1,16 +1,33 @@
 // Informacion
 const managersTraje = [
-  "images/manager1.png",
+  "/traje/Carlo-Ancelotti.png",
+  "/traje/Diego-Simeone.png",
+  "/traje/Hansi-Flick.png",
+  "/traje/Jose-Mourinho.png",
+  "/traje/Luis-Enrique.png",
+  "/traje/Pep-Guardiola.png",
+  "/traje/Xabi-Alonso.png",
+];
+const managersRemera = [
+  "/remera/ancelotti.png",
+  "/remera/simeone.png",
+  "/remera/hansi-flick.png",
+  "/remera/mourinho.png",
+  "/remera/Luis-Enrique.png",
+  "/remera/guardiola.png",
+  "/remera/xabi.png",
 ];
 
 // Secciones
 const introduccion = document.getElementById("introduccion");
 const crearEquipo = document.getElementById("crearEquipo");
 const seccionManager = document.getElementById("seccionManager");
+const avatarContainer = document.getElementById("avatarContainer");
 const seccionEquipo = document.getElementById("seccionEquipo");
 const elegirFormacion = document.getElementById("elegirFormacion");
 const elegirJugadores = document.getElementById("elegirJugadores");
 const modalOverlay = document.getElementById("modalOverlay");
+const contenidoModal = document.getElementById("contenidoModal");
 
 const jugadores = document.querySelectorAll(".cancha div div");
 
@@ -62,7 +79,18 @@ elegirAvatar.addEventListener("click", function () {
     errorVestimenta.style.display = 'block';
     errorVestimenta.textContent = 'Debe seleccionar una vestimenta';
   } else {
-    abrirModal();
+    const vestimentaSeleccionada = document.querySelector('input[name="vestimenta"]:checked').value;
+    let managersArray = vestimentaSeleccionada === 'traje' ? managersTraje : managersRemera;
+
+    let managersSeleccionados = [];
+    while (managersSeleccionados.length < 5) {
+      const indiceRandom = Math.floor(Math.random() * managersArray.length);
+      if (!managersSeleccionados.includes(managersArray[indiceRandom])) {
+        managersSeleccionados.push(managersArray[indiceRandom]);
+      }
+    }
+
+    abrirModalManager(managersSeleccionados);
   }
 });
 
@@ -151,15 +179,10 @@ function guardarManagerInfo() {
   const edad = edadInput.value;
   const vestimenta = document.querySelector('input[name="vestimenta"]:checked').value;
 
-  managerInfo = [
-    ['nombre', nombre],
-    ['apellido', apellido],
-    ['edad', edad],
-    ['vestimenta', vestimenta]
-  ];
-
-  console.log(managerInfo);
-  
+  managerInfo[0] = ['nombre', nombre];
+  managerInfo[1] = ['apellido', apellido];
+  managerInfo[2] = ['edad', edad];
+  managerInfo[3] = ['vestimenta', vestimenta];
 }
 
 const confirmarFormacion = document.getElementById("confirmarFormacion");
@@ -167,7 +190,6 @@ confirmarFormacion.addEventListener("click", validarManager);
 
 const btnEquipo = document.getElementById("btnEquipo");
 btnEquipo.addEventListener("click", terminarEquipo);
-
 
 // Funciones
 function terminarEquipo(event) {
@@ -177,14 +199,33 @@ function terminarEquipo(event) {
   // window.location.href = "web_app/misEquipos.html";
 }
 
-jugadores.forEach(jugador => {
-  jugador.addEventListener("click", function () {
-    abrirModal();
-  });
-})
+// jugadores.forEach(jugador => {
+//   jugador.addEventListener("click", function () {
+//     abrirModal();
+//   });
+// })
 
-function abrirModal() {
+function abrirModalManager(managersSeleccionados) {
   modalOverlay.style.display = "block";
+  contenidoModal.innerHTML = '';
+  if (managersSeleccionados) {
+    managersSeleccionados.forEach(manager => {
+      const buttonManager = document.createElement('button');
+      const img = document.createElement('img');
+      img.src = `/web_app/imagenes/${manager}`;
+      img.alt = 'Manager';
+      buttonManager.appendChild(img);
+      buttonManager.addEventListener('click', function () {
+        managerInfo[4] = ['avatar', manager];
+        cerrarModal();
+        elegirAvatar.style.display = 'none';
+        const parrafoAvatar = document.createElement('p');
+        parrafoAvatar.textContent = 'Manager seleccionado';
+        avatarContainer.appendChild(parrafoAvatar);
+      });
+      contenidoModal.appendChild(buttonManager);
+    });
+  }
 }
 
 function cerrarModal() {

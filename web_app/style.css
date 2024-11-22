@@ -167,7 +167,7 @@ p {
 }
 
 .modal {
-  max-width: 80%;
+  max-width: 95%;
   height: max-content;
   display: flex;
   flex-direction: column;
@@ -179,6 +179,23 @@ p {
   background-color: white;
   border-radius: 8px;
   padding: 1.25rem;
+}
+
+#contenidoModal {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#contenidoModal button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+#contenidoModal img {
+  width: 100%;
 }
 
 .cruzModal {
