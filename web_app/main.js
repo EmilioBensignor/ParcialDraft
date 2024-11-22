@@ -18,6 +18,8 @@ const managersRemera = [
   "/remera/xabi.png",
 ];
 
+// POR, DFC, LD, LI, MC, MCO, EI, ED, DC
+
 // Secciones
 const introduccion = document.getElementById("introduccion");
 const crearEquipo = document.getElementById("crearEquipo");
