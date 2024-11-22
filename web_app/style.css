@@ -34,10 +34,9 @@ footer {
   margin: 0 auto;
 }
 
-#seccionManager,
+#crearEquipo,
 #seccionEquipo,
-#pasoDos,
-#introduccion {
+#elegirJugadores {
   display: none;
 }
 
@@ -248,14 +247,14 @@ form button {
 
 /* Seccion Equipo */
 
-#pasoUno>p {
+#elegirFormacion>p {
   text-align: center;
   font-size: 0.875rem;
   font-weight: 400;
   margin-bottom: 0.75rem;
 }
 
-#pasoDos {
+#elegirJugadores {
   align-items: center;
   gap: 1rem;
 }
@@ -347,7 +346,7 @@ footer {
     object-fit: cover;
   }
 
-  #pasoUno>p {
+  #elegirFormacion>p {
     font-size: 1rem;
   }
 
@@ -501,7 +500,7 @@ footer {
     max-width: 650px;
   }
 
-  #pasoDos {
+  #elegirJugadores {
     gap: 2rem;
   }
 
@@ -609,19 +608,19 @@ footer {
     max-width: 100%;
   }
 
-  #pasoUno {
+  #elegirFormacion {
     width: 100%;
     max-width: 650px;
     margin: 0 auto;
   }
 
-  #pasoDos {
+  #elegirJugadores {
     flex-direction: row;
     position: relative;
   }
 
   .cancha {
-    width: 80%;
+    width: 45rem;
     height: 58rem;
     gap: 8rem;
     padding: 2.5rem 2.75rem;
@@ -649,4 +648,101 @@ footer {
   }
 }
 
-/* Responsive 1080px */
+@media (width >=1280px) {
+
+  p,
+  label,
+  form p,
+  select,
+  option {
+    font-size: 1.25rem;
+  }
+
+  .avatar {
+    width: 50%;
+  }
+
+  #introduccion img {
+    max-height: 650px;
+  }
+
+  form {
+    max-width: 100%;
+  }
+
+  #seccionManager,
+  #elegirFormacion {
+    max-width: 850px;
+    margin: 0 auto;
+  }
+
+  .filaForm {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  form div {
+    width: 100%;
+    gap: 1rem;
+  }
+
+  #elegirJugadores {
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  .formacionContainer {
+    width: 50%;
+  }
+
+  .finalEquipo {
+    width: 30%;
+  }
+
+  .valoracion {
+    justify-content: center;
+  }
+}
+
+@media (width >=1440px) {
+  .botonPrimario, .botonSecundario {
+    font-size: 1.5rem;
+  }
+
+  header {
+    gap: 2rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  header nav ul {
+    gap: 3rem;
+  }
+
+  header nav ul li a {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 2.25rem;
+  }
+
+  #introduccion img {
+    max-height: 720px;
+  }
+
+  #elegirFormacion > p {
+    font-size: 1.25rem;
+  }
+
+  h3 {
+    font-size: 2rem;
+  }
+
+  .valoracion p {
+    font-size: 3rem;
+  }
+}

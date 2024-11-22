@@ -19,8 +19,8 @@
     </div>
     <nav>
       <ul>
-        <li><a href="/ParcialDraft/index.html">Crear un Equipo</a></li>
-        <li><a href="/ParcialDraft/web_app/misEquipos.html">Mis Equipos</a></li>
+        <li><a href="/index.html">Crear un Equipo</a></li>
+        <li><a href="/web_app/misEquipos.html">Mis Equipos</a></li>
       </ul>
     </nav>
   </header>
@@ -43,107 +43,115 @@
         <button id="btnEmpezar" class="botonPrimario">Empezar</button>
       </div>
     </section>
-    <section id="seccionManager" class="columnAlignCenter">
-      <h2>Crea a tu Manager</h2>
+    <section id="crearEquipo" class="columnAlignCenter">
       <form>
-        <div>
-          <label for="nombre">Nombre</label>
-          <input type="text" id="nombre">
-        </div>
-        <div>
-          <label for="apellido">Apellido</label>
-          <input type="text" id="apellido">
-        </div>
-        <div>
-          <label for="edad">Edad</label>
-          <input type="number" id="edad" min="1" max="100">
-        </div>
-        <div class="vestimenta">
-          <p>Vestimenta</p>
-          <div>
+        <div id="seccionManager" class="seccionManager">
+          <h2>Crea a tu Manager</h2>
+          <div class="filaForm">
             <div>
-              <input type="radio" name="vestimenta" id="traje" value="traje">
-              <label for="traje">Traje</label>
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre">
             </div>
             <div>
-              <input type="radio" name="vestimenta" id="remera" value="remera">
-              <label for="remera">Remera</label>
+              <label for="apellido">Apellido</label>
+              <input type="text" id="apellido">
             </div>
           </div>
-        </div>
-        <div>
-          <p>Avatar</p>
-          <button type="button" id="elegirAvatar" class="botonSecundario">Elegir avatar</button>
-        </div>
-        <button id="btnManager" class="botonPrimario">Crear Manager</button>
-      </form>
-    </section>
-    <section id="seccionEquipo" class="columnAlignCenter">
-      <h2>Crea tu Equipo</h2>
-      <form class="formEquipo">
-        <div id="pasoUno">
-          <p>Para poder seleccionar a tus jugadores, elige una formación.</p>
-          <div>
-            <label for="formacion">Formación</label>
-            <select id="formacion">
-              <option value="">Seleccione</option>
-              <option value="1">4-3-3</option>
-              <option value="2">4-4-2</option>
-              <option value="3">4-1-2-1-2</option>
-            </select>
-          </div>
-          <button id="confirmarFormacion" type="button" class="botonPrimario">Confirmar</button>
-        </div>
-        <div id="pasoDos">
-          <div class="cancha">
-            <div class="porteria">
-              <div class="portero">
-                <button type="button">POR</button>
-              </div>
+          <div class="filaForm">
+            <div>
+              <label for="edad">Edad</label>
+              <input type="number" id="edad" min="1" max="100">
             </div>
-            <div class="defensa">
-              <div class="lateralIzquierdo">
-                <button type="button">LI</button>
-              </div>
-              <div class="centralIzquierdo">
-                <button type="button">DFC</button>
-              </div>
-              <div class="centralDerecho">
-                <button type="button">DFC</button>
-              </div>
-              <div class="lateralDerecho">
-                <button type="button">LD</button>
-              </div>
-            </div>
-            <div class="mediocampo">
-              <div class="mediocampista">
-                <button type="button">MC</button>
-              </div>
-              <div class="mediocampistaOfensivo">
-                <button type="button">MCO</button>
-              </div>
-              <div class="mediocampista">
-                <button type="button">MC</button>
-              </div>
-            </div>
-            <div class="delantera">
-              <div class="extremo">
-                <button type="button">EI</button>
-              </div>
-              <div class="delanteroCentral">
-                <button type="button">DC</button>
-              </div>
-              <div class="extremo">
-                <button type="button">ED</button>
+            <div class="vestimenta">
+              <p>Vestimenta</p>
+              <div>
+                <div>
+                  <input type="radio" name="vestimenta" id="traje" value="traje">
+                  <label for="traje">Traje</label>
+                </div>
+                <div>
+                  <input type="radio" name="vestimenta" id="remera" value="remera">
+                  <label for="remera">Remera</label>
+                </div>
               </div>
             </div>
           </div>
-          <div class="finalEquipo">
-            <div class="valoracion">
-              <h3>Valoración</h3>
-              <p>90</p>
+          <div class="filaForm">
+            <div class="avatar">
+              <p>Avatar</p>
+              <button type="button" id="elegirAvatar" class="botonSecundario">Elegir avatar</button>
             </div>
-            <button id="btnEquipo" type="submit" class="botonPrimario">Terminar Equipo</button>
+            <button type="button" id="btnManager" class="botonPrimario">Siguiente paso</button>
+          </div>
+        </div>
+        <div id="seccionEquipo" class="columnAlignCenter">
+          <h2>Crea tu Equipo</h2>
+          <div id="elegirFormacion">
+            <p>Para poder seleccionar a tus jugadores, elige una formación.</p>
+            <div class="filaForm">
+              <div class="formacionContainer">
+                <label for="formacion">Formación</label>
+                <select id="formacion">
+                  <option value="">Seleccione</option>
+                  <option value="1">4-3-3</option>
+                  <option value="2">4-4-2</option>
+                  <option value="3">4-1-2-1-2</option>
+                </select>
+              </div>
+              <button type="button" id="confirmarFormacion" class="botonPrimario">Confirmar formación</button>
+            </div>
+          </div>
+          <div id="elegirJugadores">
+            <div class="cancha">
+              <div class="porteria">
+                <div class="portero">
+                  <button type="button">POR</button>
+                </div>
+              </div>
+              <div class="defensa">
+                <div class="lateralIzquierdo">
+                  <button type="button">LI</button>
+                </div>
+                <div class="centralIzquierdo">
+                  <button type="button">DFC</button>
+                </div>
+                <div class="centralDerecho">
+                  <button type="button">DFC</button>
+                </div>
+                <div class="lateralDerecho">
+                  <button type="button">LD</button>
+                </div>
+              </div>
+              <div class="mediocampo">
+                <div class="mediocampista">
+                  <button type="button">MC</button>
+                </div>
+                <div class="mediocampistaOfensivo">
+                  <button type="button">MCO</button>
+                </div>
+                <div class="mediocampista">
+                  <button type="button">MC</button>
+                </div>
+              </div>
+              <div class="delantera">
+                <div class="extremo">
+                  <button type="button">EI</button>
+                </div>
+                <div class="delanteroCentral">
+                  <button type="button">DC</button>
+                </div>
+                <div class="extremo">
+                  <button type="button">ED</button>
+                </div>
+              </div>
+            </div>
+            <div class="finalEquipo">
+              <div class="valoracion">
+                <h3>Valoración</h3>
+                <p>90</p>
+              </div>
+              <button type="submit" id="btnEquipo" class="botonPrimario">Terminar Equipo</button>
+            </div>
           </div>
         </div>
       </form>
