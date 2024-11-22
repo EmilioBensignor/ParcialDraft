@@ -1,8 +1,8 @@
 /* Generales */
 
 :root {
-  --color-primario: #1E90FF;
-  --color-secundario: #042c95;
+  --color-primario: #62E05D;
+  --color-secundario: #2C6A39;
   --color-terciario: #FFD700;
   --color-fondo: #F8F9FA;
   --color-letra: #333333;
@@ -73,7 +73,7 @@ header nav ul li a:hover {
 h1 {
   text-align: center;
   font-size: 1.5rem;
-  color: var(--color-fondo);
+  color: var(--color-letra);
 }
 
 /* Main generales */
