@@ -1,19 +1,19 @@
 // Informacion
 const managersTraje = [
-  "/traje/Carlo-Ancelotti.png",
-  "/traje/Diego-Simeone.png",
-  "/traje/Hansi-Flick.png",
-  "/traje/Jose-Mourinho.png",
-  "/traje/Luis-Enrique.png",
-  "/traje/Pep-Guardiola.png",
-  "/traje/Xabi-Alonso.png",
+  "/traje/ancelotti.png",
+  "/traje/simeone.png",
+  "/traje/flick.png",
+  "/traje/mourinho.png",
+  "/traje/enrique.png",
+  "/traje/guardiola.png",
+  "/traje/xabi.png",
 ];
 const managersRemera = [
   "/remera/ancelotti.png",
   "/remera/simeone.png",
-  "/remera/hansi-flick.png",
+  "/remera/flick.png",
   "/remera/mourinho.png",
-  "/remera/Luis-Enrique.png",
+  "/remera/enrique.png",
   "/remera/guardiola.png",
   "/remera/xabi.png",
 ];
