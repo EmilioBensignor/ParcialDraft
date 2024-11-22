@@ -1,3 +1,8 @@
+// Informacion
+const managersTraje = [
+  "images/manager1.png",
+];
+
 // Secciones
 const introduccion = document.getElementById("introduccion");
 const crearEquipo = document.getElementById("crearEquipo");
@@ -9,8 +14,17 @@ const modalOverlay = document.getElementById("modalOverlay");
 
 const jugadores = document.querySelectorAll(".cancha div div");
 
+// Inputs y errores
+const nombreInput = document.getElementById('nombre');
+const apellidoInput = document.getElementById('apellido');
+const edadInput = document.getElementById('edad');
+const vestimentaInputs = document.getElementsByName('vestimenta');
 
-// Boton
+const errorNombre = document.getElementById('errorNombre');
+const errorApellido = document.getElementById('errorApellido');
+const errorEdad = document.getElementById('errorEdad');
+const errorVestimenta = document.getElementById('errorVestimenta');
+
 const btnEmpezar = document.getElementById("btnEmpezar");
 btnEmpezar.addEventListener("click", function () {
   introduccion.style.display = "none";
@@ -18,22 +32,42 @@ btnEmpezar.addEventListener("click", function () {
 });
 
 let managerValido = false;
+let managerInfo = [];
+
 const btnManager = document.getElementById("btnManager");
 btnManager.addEventListener("click", function () {
   validarManager();
   if (managerValido) {
+    guardarManagerInfo();
     seccionManager.style.display = "none";
     seccionEquipo.style.display = "flex";
   }
 });
 
+const elegirAvatar = document.getElementById("elegirAvatar");
+elegirAvatar.addEventListener("click", function () {
+  errorVestimenta.style.display = 'none';
+  errorVestimenta.textContent = '';
+
+  let opcionSeleccionada = false;
+
+  for (let opcion = 0; opcion < vestimentaInputs.length; opcion++) {
+    if (vestimentaInputs[opcion].checked) {
+      opcionSeleccionada = true;
+      break;
+    }
+  }
+
+  if (!opcionSeleccionada) {
+    errorVestimenta.style.display = 'block';
+    errorVestimenta.textContent = 'Debe seleccionar una vestimenta';
+  } else {
+    abrirModal();
+  }
+});
+
 function validarManager() {
   managerValido = true;
-
-  const errorNombre = document.getElementById('errorNombre');
-  const errorApellido = document.getElementById('errorApellido');
-  const errorEdad = document.getElementById('errorEdad');
-  const errorVestimenta = document.getElementById('errorVestimenta');
 
   errorNombre.style.display = 'none';
   errorApellido.style.display = 'none';
@@ -45,7 +79,7 @@ function validarManager() {
   errorVestimenta.textContent = '';
 
   // Validar nombre
-  const nombre = document.getElementById('nombre').value;
+  const nombre = nombreInput.value;
   if (!nombre) {
     managerValido = false;
     errorNombre.style.display = 'block';
@@ -61,7 +95,7 @@ function validarManager() {
   }
 
   // Validar apellido
-  const apellido = document.getElementById('apellido').value;
+  const apellido = apellidoInput.value;
   if (!apellido) {
     managerValido = false;
     errorApellido.style.display = 'block';
@@ -77,7 +111,7 @@ function validarManager() {
   }
 
   // Validar edad
-  const edad = document.getElementById('edad').value;
+  const edad = edadInput.value;
   if (!edad) {
     managerValido = false;
     errorEdad.style.display = 'block';
@@ -93,12 +127,10 @@ function validarManager() {
   }
 
   // Validar vestimenta
-  const opciones = document.getElementsByName('vestimenta');
-
   let opcionSeleccionada = false;
 
-  for (let opcion = 0; opcion < opciones.length; opcion++) {
-    if (opciones[opcion].checked) {
+  for (let opcion = 0; opcion < vestimentaInputs.length; opcion++) {
+    if (vestimentaInputs[opcion].checked) {
       opcionSeleccionada = true;
       break;
     }
@@ -111,6 +143,23 @@ function validarManager() {
   }
 
   return managerValido;
+}
+
+function guardarManagerInfo() {
+  const nombre = nombreInput.value;
+  const apellido = apellidoInput.value;
+  const edad = edadInput.value;
+  const vestimenta = document.querySelector('input[name="vestimenta"]:checked').value;
+
+  managerInfo = [
+    ['nombre', nombre],
+    ['apellido', apellido],
+    ['edad', edad],
+    ['vestimenta', vestimenta]
+  ];
+
+  console.log(managerInfo);
+  
 }
 
 const confirmarFormacion = document.getElementById("confirmarFormacion");
