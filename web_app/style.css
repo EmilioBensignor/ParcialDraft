@@ -55,6 +55,11 @@ header {
   padding: 1rem;
 }
 
+header img {
+  width: 5rem;
+  height: 100%;
+}
+
 header nav ul {
   display: flex;
   gap: 0.75rem;
@@ -70,12 +75,6 @@ header nav ul li a:hover {
   color: var(--color-primario);
 }
 
-h1 {
-  text-align: center;
-  font-size: 1.5rem;
-  color: var(--color-letra);
-}
-
 /* Main generales */
 
 main {
@@ -88,6 +87,12 @@ section {
   height: 100%;
   gap: 1rem;
   padding: 2rem 1rem;
+}
+
+h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--color-letra);
 }
 
 h2 {
@@ -333,6 +338,10 @@ footer {
 
 @media (width >=480px) {
 
+  header img {
+    width: 7.5rem;
+  }
+
   h1 {
     font-size: 1.625rem;
   }
@@ -420,13 +429,17 @@ footer {
   }
 }
 
-@media (width >=700px) {
+@media (width >=700px) {  
   .botonPrimario {
     font-size: 1.25rem;
   }
 
   .botonSecundario {
     font-size: 1.125rem;
+  }
+
+  header img {
+    width: 10rem;
   }
 
   header nav ul {
@@ -706,12 +719,18 @@ footer {
 }
 
 @media (width >=1440px) {
-  .botonPrimario, .botonSecundario {
+
+  .botonPrimario,
+  .botonSecundario {
     font-size: 1.5rem;
   }
 
   header {
     gap: 2rem;
+  }
+
+  header img {
+    width: 12rem;
   }
 
   h1 {
@@ -734,7 +753,7 @@ footer {
     max-height: 720px;
   }
 
-  #elegirFormacion > p {
+  #elegirFormacion>p {
     font-size: 1.25rem;
   }
 
