@@ -124,12 +124,13 @@ p {
 .botonPrimario {
   align-self: center;
   background-color: var(--color-primario);
-  color: var(--color-fondo);
+  color: var(--color-letra);
   padding: 1rem 2rem;
 }
 
 .botonPrimario:hover {
   background-color: var(--color-secundario);
+  color: var(--color-fondo);
 }
 
 .botonSecundario {
