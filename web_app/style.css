@@ -645,6 +645,11 @@ footer {
     max-width: 100%;
   }
 
+  form div input[type="radio"] {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
   #elegirFormacion {
     width: 100%;
     max-width: 650px;

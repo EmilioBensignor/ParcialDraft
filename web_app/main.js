@@ -1,4 +1,3 @@
-// Informacion
 const managersTraje = [
   "/traje/ancelotti.png",
   "/traje/simeone.png",
@@ -17,10 +16,97 @@ const managersRemera = [
   "/remera/guardiola.png",
   "/remera/xabi.png",
 ];
+const porteros = [
+  "/POR/alisson.png",
+  "/POR/buffon.png",
+  "/POR/casillas.png",
+  "/POR/courtois.png",
+  "/POR/dibu.png",
+  "/POR/ederson.png",
+  "/POR/neuer.png",
+  "/POR/oblak.png",
+];
+const defensoresCentrales = [
+  "DFC/araujo.png",
+  "DFC/bastoni.png",
+  "DFC/maldini.png",
+  "DFC/marquinhos.png",
+  "DFC/puyol.png",
+  "DFC/ruben.png",
+  "DFC/rudiger.png",
+  "DFC/van_ijk.png",
+];
+const lateralesDerechos = [
+  "LD/arnold.png",
+  "LD/cafu.png",
+  "LD/carvajal.png",
+  "LD/hakimi.png",
+  "LD/kimmich.png",
+  "LD/kounde.png",
+  "LD/walker.png",
+  "LD/zanetti.png",
+];
+const lateralesIzquierdos = [
+  "LI/cancelo.png",
+  "LI/carlos.png",
+  "LI/cole.png",
+  "LI/davies.png",
+  "LI/dimarco.png",
+  "LI/grimaldo.png",
+  "LI/hernandez.png",
+  "LI/robertson.png",
+];
+const mediocampistasCentrales = [
+  "MC/debruyne.png",
+  "MC/dejong.png",
+  "MC/matthaus.png",
+  "MC/odegaard.png",
+  "MC/pirlo.png",
+  "MC/rodri.png",
+  "MC/valverde.png",
+  "MC/xavi.png",
+];
+const mediocampistasOfensivos = [
+  "MCO/bellingham.png",
+  "MCO/dybala.png",
+  "MCO/fernandes.png",
+  "MCO/musiala.png",
+  "MCO/pele.png",
+  "MCO/riquelme.png",
+  "MCO/wirtz.png",
+  "MCO/zidane.png",
+];
+const extremosDerechos = [
+  "ED/dembele.png",
+  "ED/figo.png",
+  "ED/fouden.png",
+  "ED/garrincha.png",
+  "ED/messi.png",
+  "ED/rodri.png",
+  "ED/saka.png",
+  "ED/salah.png",
+];
+const extremosIzquierdos = [
+  "EI/diaz.png",
+  "EI/grealish.png",
+  "EI/kvaratskhelia.png",
+  "EI/leao.png",
+  "EI/neymar.png",
+  "EI/rivaldo.png",
+  "EI/ronaldinho.png",
+  "EI/vini.png",
+];
+const delanterosCentrales = [
+  "DC/cristiano.png",
+  "DC/griezmann.png",
+  "DC/haaland.png",
+  "DC/henry.png",
+  "DC/lautaro.png",
+  "DC/lewandowski.png",
+  "DC/mbappe.png",
+  "DC/ronaldo.png",
+];
 
-// POR, DFC, LD, LI, MC, MCO, EI, ED, DC
-
-// Secciones
 const introduccion = document.getElementById("introduccion");
 const crearEquipo = document.getElementById("crearEquipo");
 const seccionManager = document.getElementById("seccionManager");
@@ -33,7 +119,6 @@ const contenidoModal = document.getElementById("contenidoModal");
 
 const jugadores = document.querySelectorAll(".cancha div div");
 
-// Inputs y errores
 const nombreInput = document.getElementById('nombre');
 const apellidoInput = document.getElementById('apellido');
 const edadInput = document.getElementById('edad');
@@ -43,11 +128,16 @@ const errorNombre = document.getElementById('errorNombre');
 const errorApellido = document.getElementById('errorApellido');
 const errorEdad = document.getElementById('errorEdad');
 const errorVestimenta = document.getElementById('errorVestimenta');
+const errorAvatar = document.getElementById('errorAvatar');
 
 const btnEmpezar = document.getElementById("btnEmpezar");
 btnEmpezar.addEventListener("click", function () {
   introduccion.style.display = "none";
   crearEquipo.style.display = "flex";
+
+  // Borrar
+  seccionManager.style.display = "none";
+  seccionEquipo.style.display = "flex";
 });
 
 let managerValido = false;
@@ -103,12 +193,13 @@ function validarManager() {
   errorApellido.style.display = 'none';
   errorEdad.style.display = 'none';
   errorVestimenta.style.display = 'none';
+  errorAvatar.style.display = 'none';
   errorNombre.textContent = '';
   errorApellido.textContent = '';
   errorEdad.textContent = '';
   errorVestimenta.textContent = '';
+  errorAvatar.textContent = '';
 
-  // Validar nombre
   const nombre = nombreInput.value;
   if (!nombre) {
     managerValido = false;
@@ -124,7 +215,6 @@ function validarManager() {
     errorNombre.textContent = 'El nombre debe tener menos de 20 caracteres';
   }
 
-  // Validar apellido
   const apellido = apellidoInput.value;
   if (!apellido) {
     managerValido = false;
@@ -140,7 +230,6 @@ function validarManager() {
     errorApellido.textContent = 'El apellido debe tener menos de 20 caracteres';
   }
 
-  // Validar edad
   const edad = edadInput.value;
   if (!edad) {
     managerValido = false;
@@ -156,7 +245,6 @@ function validarManager() {
     errorEdad.textContent = 'La edad debe ser un número entre 0 y 100';
   }
 
-  // Validar vestimenta
   let opcionSeleccionada = false;
 
   for (let opcion = 0; opcion < vestimentaInputs.length; opcion++) {
@@ -170,6 +258,12 @@ function validarManager() {
     managerValido = false;
     errorVestimenta.style.display = 'block';
     errorVestimenta.textContent = 'Debe seleccionar una opción';
+  }
+
+  if (!managerInfo[4]) {
+    managerValido = false;
+    errorAvatar.style.display = 'block';
+    errorAvatar.textContent = 'Debe seleccionar un avatar';
   }
 
   return managerValido;
@@ -188,7 +282,26 @@ function guardarManagerInfo() {
 }
 
 const confirmarFormacion = document.getElementById("confirmarFormacion");
-confirmarFormacion.addEventListener("click", validarManager);
+confirmarFormacion.addEventListener("click", function () {
+  const formacionSeleccionada = document.getElementById('formacion').value;
+  const errorFormacion = document.getElementById('errorFormacion');
+  
+  errorFormacion.style.display = 'none';
+  errorFormacion.textContent = '';
+
+  if (!formacionSeleccionada) {
+    errorFormacion.style.display = 'block';
+    errorFormacion.textContent = 'Debe seleccionar una formación';
+    return;
+  }
+  elegirFormacion.style.display = "none";
+  elegirJugadores.style.display = "flex";
+  dibujarEquipo(formacionSeleccionada);
+});
+
+function dibujarEquipo(formacion) {
+  console.log(formacion);
+}
 
 const btnEquipo = document.getElementById("btnEquipo");
 btnEquipo.addEventListener("click", terminarEquipo);
@@ -219,10 +332,12 @@ function abrirModalManager(managersSeleccionados) {
       buttonManager.appendChild(img);
       buttonManager.addEventListener('click', function () {
         managerInfo[4] = ['avatar', manager];
+        errorAvatar.style.display = 'none';
         cerrarModal();
         elegirAvatar.style.display = 'none';
         const parrafoAvatar = document.createElement('p');
         parrafoAvatar.textContent = 'Manager seleccionado';
+        parrafoAvatar.style.color = '#2C6A39';
         avatarContainer.appendChild(parrafoAvatar);
       });
       contenidoModal.appendChild(buttonManager);
