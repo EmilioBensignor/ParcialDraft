@@ -108,55 +108,33 @@
             </div>
           </div>
           <div id="elegirJugadores">
-            <div class="cancha">
+            <p class="explicacion">Aprete uno de los circulos amarillos para seleccionar al jugador de esa posición</p>
+            <div id="cancha" class="cancha">
               <div class="porteria">
-                <div class="portero">
+                <div id="por" class="portero">
                   <button type="button">POR</button>
                 </div>
               </div>
               <div class="defensa">
-                <div class="lateralIzquierdo">
+                <div id="li" class="lateralIzquierdo">
                   <button type="button">LI</button>
                 </div>
-                <div class="centralIzquierdo">
+                <div id="dfci" class="centralIzquierdo">
                   <button type="button">DFC</button>
                 </div>
-                <div class="centralDerecho">
+                <div id="dfcd" class="centralDerecho">
                   <button type="button">DFC</button>
                 </div>
-                <div class="lateralDerecho">
+                <div id="ld" class="lateralDerecho">
                   <button type="button">LD</button>
                 </div>
               </div>
-              <div class="mediocampo">
-                <div class="mediocampista">
-                  <button type="button">MC</button>
-                </div>
-                <div class="mediocampistaOfensivo">
-                  <button type="button">MCO</button>
-                </div>
-                <div class="mediocampista">
-                  <button type="button">MC</button>
-                </div>
-              </div>
-              <div class="delantera">
-                <div class="extremo">
-                  <button type="button">EI</button>
-                </div>
-                <div class="delanteroCentral">
-                  <button type="button">DC</button>
-                </div>
-                <div class="extremo">
-                  <button type="button">ED</button>
-                </div>
-              </div>
+              <div id="mediocampo" class="mediocampo"></div>
+              <div id="delantera" class="delantera"></div>
             </div>
             <div class="finalEquipo">
-              <div class="valoracion">
-                <h3>Valoración</h3>
-                <p>90</p>
-              </div>
               <button type="submit" id="btnEquipo" class="botonPrimario">Terminar Equipo</button>
+              <p id="errorEquipo" class="error"></p>
             </div>
           </div>
         </div>

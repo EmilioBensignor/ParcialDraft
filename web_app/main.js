@@ -34,7 +34,7 @@ const defensoresCentrales = [
   "DFC/puyol.png",
   "DFC/ruben.png",
   "DFC/rudiger.png",
-  "DFC/van_ijk.png",
+  "DFC/vandijk.png",
 ];
 const lateralesDerechos = [
   "LD/arnold.png",
@@ -117,8 +117,6 @@ const elegirJugadores = document.getElementById("elegirJugadores");
 const modalOverlay = document.getElementById("modalOverlay");
 const contenidoModal = document.getElementById("contenidoModal");
 
-const jugadores = document.querySelectorAll(".cancha div div");
-
 const nombreInput = document.getElementById('nombre');
 const apellidoInput = document.getElementById('apellido');
 const edadInput = document.getElementById('edad');
@@ -130,14 +128,16 @@ const errorEdad = document.getElementById('errorEdad');
 const errorVestimenta = document.getElementById('errorVestimenta');
 const errorAvatar = document.getElementById('errorAvatar');
 
+// Borrar
+introduccion.style.display = "none";
+crearEquipo.style.display = "flex";
+seccionManager.style.display = "none";
+seccionEquipo.style.display = "flex";
+
 const btnEmpezar = document.getElementById("btnEmpezar");
 btnEmpezar.addEventListener("click", function () {
   introduccion.style.display = "none";
   crearEquipo.style.display = "flex";
-
-  // Borrar
-  seccionManager.style.display = "none";
-  seccionEquipo.style.display = "flex";
 });
 
 let managerValido = false;
@@ -186,6 +186,31 @@ elegirAvatar.addEventListener("click", function () {
   }
 });
 
+function abrirModalManager(managersSeleccionados) {
+  modalOverlay.style.display = "block";
+  contenidoModal.innerHTML = '';
+  if (managersSeleccionados) {
+    managersSeleccionados.forEach(manager => {
+      const buttonManager = document.createElement('button');
+      const img = document.createElement('img');
+      img.src = `/web_app/imagenes/${manager}`;
+      img.alt = 'Manager';
+      buttonManager.appendChild(img);
+      buttonManager.addEventListener('click', function () {
+        managerInfo[4] = ['avatar', manager];
+        errorAvatar.style.display = 'none';
+        cerrarModal();
+        elegirAvatar.style.display = 'none';
+        const parrafoAvatar = document.createElement('p');
+        parrafoAvatar.textContent = 'Manager seleccionado';
+        parrafoAvatar.style.color = '#2C6A39';
+        avatarContainer.appendChild(parrafoAvatar);
+      });
+      contenidoModal.appendChild(buttonManager);
+    });
+  }
+}
+
 function validarManager() {
   managerValido = true;
 
@@ -205,6 +230,10 @@ function validarManager() {
     managerValido = false;
     errorNombre.style.display = 'block';
     errorNombre.textContent = 'El nombre es requerido';
+  } else if (!isNaN(nombre)) {
+    managerValido = false;
+    errorNombre.style.display = 'block';
+    errorNombre.textContent = 'El nombre solo puede contener letras';
   } else if (nombre.length < 2) {
     managerValido = false;
     errorNombre.style.display = 'block';
@@ -220,6 +249,10 @@ function validarManager() {
     managerValido = false;
     errorApellido.style.display = 'block';
     errorApellido.textContent = 'El apellido es requerido';
+  } else if (!isNaN(apellido)) {
+    managerValido = false;
+    errorApellido.style.display = 'block';
+    errorApellido.textContent = 'El apellido solo puede contener letras';
   } else if (apellido.length < 2) {
     managerValido = false;
     errorApellido.style.display = 'block';
@@ -281,11 +314,14 @@ function guardarManagerInfo() {
   managerInfo[3] = ['vestimenta', vestimenta];
 }
 
+let formacionSeleccionada = '';
+let equipo = {};
+
 const confirmarFormacion = document.getElementById("confirmarFormacion");
 confirmarFormacion.addEventListener("click", function () {
-  const formacionSeleccionada = document.getElementById('formacion').value;
+  formacionSeleccionada = document.getElementById('formacion').value;
   const errorFormacion = document.getElementById('errorFormacion');
-  
+
   errorFormacion.style.display = 'none';
   errorFormacion.textContent = '';
 
@@ -299,50 +335,185 @@ confirmarFormacion.addEventListener("click", function () {
   dibujarEquipo(formacionSeleccionada);
 });
 
+let jugadores = [];
+
 function dibujarEquipo(formacion) {
-  console.log(formacion);
+  const cancha = document.getElementById('cancha');
+  const mediocampo = document.getElementById('mediocampo');
+  const delantera = document.getElementById('delantera');
+
+  if (formacion === '1') {
+    mediocampo.innerHTML = `
+      <div id="mci" class="mediocampista">
+        <button type="button">MC</button>
+      </div>
+      <div id="mco" class="mediocampistaOfensivo">
+        <button type="button">MCO</button>
+      </div>
+      <div id="mcd" class="mediocampista">
+        <button type="button">MC</button>
+      </div>
+    `;
+    delantera.innerHTML = `
+      <div id="ei" class="extremo">
+        <button type="button">EI</button>
+      </div>
+      <div id="dc" class="delanteroCentral">
+        <button type="button">DC</button>
+      </div>
+      <div id="ed" class="extremo">
+        <button type="button">ED</button>
+      </div>
+    `;
+  } else if (formacion === '2') {
+    mediocampo.innerHTML = `
+      <div id="ei" class="extremo">
+        <button type="button">EI</button>
+      </div>
+      <div id="mci" class="mediocampista">
+        <button type="button">MC</button>
+      </div>
+      <div id="mcd" class="mediocampista">
+        <button type="button">MC</button>
+      </div>
+      <div id="ed" class="extremo">
+        <button type="button">ED</button>
+      </div>
+    `;
+    delantera.innerHTML = `
+      <div id="dci" class="delanteroCentral">
+        <button type="button">DC</button>
+      </div>
+      <div id="dcd" class="delanteroCentral">
+        <button type="button">DC</button>
+      </div>
+    `;
+    cancha.classList.add('formacionDos');
+    delantera.classList.add('dosDelanteros');
+  } else if (formacion === '3') {
+    mediocampo.innerHTML = `
+      <div id="mci" class="mediocampista">
+        <button type="button">MC</button>
+      </div>
+      <div id="mdo" class="mediocampistaDefensivo">
+        <button type="button">MC</button>
+      </div>
+      <div id="mcd" class="mediocampista">
+        <button type="button">MC</button>
+      </div>
+    `;
+    delantera.innerHTML = `
+      <div id="dci" class="delanteroCentral">
+        <button type="button">DC</button>
+      </div>
+      <div id="mco" class="falsoNueve">
+        <button type="button">MCO</button>
+      </div>
+      <div id="dcd" class="delanteroCentral">
+        <button type="button">DC</button>
+      </div>
+    `;
+    cancha.classList.add('formacionTres');
+  }
+
+  jugadores = document.querySelectorAll(".cancha div div");
+  jugadores.forEach(jugador => {
+    jugador.addEventListener("click", function () {
+      const posicion = jugador.getAttribute("id").toUpperCase();
+      abrirModalJugador(posicion);
+    });
+  });
+}
+
+const jugadoresPorPosicion = {
+  POR: porteros,
+  DFCD: defensoresCentrales,
+  DFCI: defensoresCentrales,
+  LD: lateralesDerechos,
+  LI: lateralesIzquierdos,
+  MDO: mediocampistasCentrales,
+  MCI: mediocampistasCentrales,
+  MCD: mediocampistasCentrales,
+  MC: mediocampistasCentrales,
+  MCO: mediocampistasOfensivos,
+  ED: extremosDerechos,
+  EI: extremosIzquierdos,
+  DC: delanterosCentrales,
+  DCI: delanterosCentrales,
+  DCD: delanterosCentrales,
+};
+
+function abrirModalJugador(posicion) {
+  modalOverlay.style.display = "block";
+  contenidoModal.innerHTML = '';
+
+  const jugadoresArray = jugadoresPorPosicion[posicion];
+  const jugadoresSeleccionados = [];
+  while (jugadoresSeleccionados.length < 5) {
+    const indiceRandom = Math.floor(Math.random() * jugadoresArray.length);
+    if (!jugadoresSeleccionados.includes(jugadoresArray[indiceRandom])) {
+      jugadoresSeleccionados.push(jugadoresArray[indiceRandom]);
+    }
+  }
+
+  jugadoresSeleccionados.forEach(jugador => {
+    const buttonJugador = document.createElement('button');
+    const img = document.createElement('img');
+    img.src = `/web_app/imagenes/jugadores/${jugador}`;
+    img.alt = 'Jugador';
+    buttonJugador.appendChild(img);
+    buttonJugador.addEventListener('click', function () {
+      const botonPosicion = document.querySelector(`#${posicion.toLowerCase()} button`);
+      botonPosicion.style.display = 'none';
+      const imgSeleccionada = document.createElement('img');
+      imgSeleccionada.src = `/web_app/imagenes/jugadores/${jugador}`;
+      imgSeleccionada.alt = 'Jugador Seleccionado';
+      document.querySelector(`#${posicion.toLowerCase()}`).appendChild(imgSeleccionada);
+      equipo[posicion] = jugador;
+
+      cerrarModal();
+    });
+    contenidoModal.appendChild(buttonJugador);
+  });
+}
+
+function seleccionarJugadoresAleatorios(array, cantidad) {
+  const seleccionados = [];
+  while (seleccionados.length < cantidad) {
+    const indiceRandom = Math.floor(Math.random() * array.length);
+    if (!seleccionados.includes(array[indiceRandom])) {
+      seleccionados.push(array[indiceRandom]);
+    }
+  }
+  return seleccionados;
 }
 
 const btnEquipo = document.getElementById("btnEquipo");
 btnEquipo.addEventListener("click", terminarEquipo);
 
-// Funciones
 function terminarEquipo(event) {
   event.preventDefault();
-  // Validar equipo
+  const errorEquipo = document.getElementById('errorEquipo');
+  errorEquipo.style.display = 'none';
+  errorEquipo.textContent = '';
+
+  let jugadoresSeleccionados = 0;
+  for (let posicion in equipo) {
+    if (equipo[posicion]) {
+      jugadoresSeleccionados++;
+    }
+  }
+
+  if (jugadoresSeleccionados !== 11) {
+    errorEquipo.style.display = 'block';
+    errorEquipo.textContent = 'Debe seleccionar 11 jugadores';
+    return;
+  }
+
+  console.log("Equipo completo", equipo);
+  
   // seccionEquipo.style.display = "none";
   // window.location.href = "web_app/misEquipos.html";
-}
-
-// jugadores.forEach(jugador => {
-//   jugador.addEventListener("click", function () {
-//     abrirModal();
-//   });
-// })
-
-function abrirModalManager(managersSeleccionados) {
-  modalOverlay.style.display = "block";
-  contenidoModal.innerHTML = '';
-  if (managersSeleccionados) {
-    managersSeleccionados.forEach(manager => {
-      const buttonManager = document.createElement('button');
-      const img = document.createElement('img');
-      img.src = `/web_app/imagenes/${manager}`;
-      img.alt = 'Manager';
-      buttonManager.appendChild(img);
-      buttonManager.addEventListener('click', function () {
-        managerInfo[4] = ['avatar', manager];
-        errorAvatar.style.display = 'none';
-        cerrarModal();
-        elegirAvatar.style.display = 'none';
-        const parrafoAvatar = document.createElement('p');
-        parrafoAvatar.textContent = 'Manager seleccionado';
-        parrafoAvatar.style.color = '#2C6A39';
-        avatarContainer.appendChild(parrafoAvatar);
-      });
-      contenidoModal.appendChild(buttonManager);
-    });
-  }
 }
 
 function cerrarModal() {
