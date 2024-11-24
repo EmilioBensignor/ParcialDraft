@@ -36,7 +36,8 @@ footer {
 
 #crearEquipo,
 #seccionEquipo,
-#elegirJugadores {
+#elegirJugadores,
+#misEquipos {
   display: none;
 }
 
@@ -71,13 +72,16 @@ header nav ul {
   gap: 0.75rem;
 }
 
-header nav ul li a {
-  text-decoration: none;
+header nav ul li button {
+  background: none;
+  border: none;
+  font-size: 1rem;
   color: var(--color-fondo);
+  cursor: pointer;
   transition: all 0.3s;
 }
 
-header nav ul li a:hover {
+header nav ul li button:hover {
   color: var(--color-primario);
 }
 
@@ -297,6 +301,11 @@ form button {
   gap: 1rem;
 }
 
+.canchaContainer {
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
 .explicacion {
   text-align: center;
   font-weight: 400;
@@ -400,6 +409,27 @@ footer {
   padding: 1rem;
 }
 
+footer .botonPrimario:hover {
+  background-color: var(--color-letra);
+  color: var(--color-primario);
+}
+
+#modalOverlay .contenidoFooter {
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: start;
+}
+
+#modalOverlay .contenidoFooter p {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}
+
+#modalOverlay .contenidoFooter span {
+  font-weight: 600;
+}
+
 @media (width >=480px) {
 
   header img {
@@ -434,6 +464,11 @@ footer {
 
   .cancha div img {
     width: 3.25rem;
+  }
+
+  #modalOverlay .contenidoFooter p {
+    flex-direction: row;
+    gap: 0.5rem;
   }
 }
 
@@ -722,6 +757,11 @@ footer {
   #elegirJugadores {
     flex-direction: row;
     position: relative;
+    gap: 3rem;
+  }
+
+  .canchaContainer {
+    gap: 2rem;
   }
 
   .cancha {
@@ -841,6 +881,10 @@ footer {
     font-size: 2.5rem;
   }
 
+  h3 {
+    font-size: 2rem;
+  }
+
   header nav ul {
     gap: 3rem;
   }
@@ -865,7 +909,7 @@ footer {
     font-size: 1.25rem;
   }
 
-  h3 {
-    font-size: 2rem;
+  .modal {
+    max-width: 1440px;
   }
 }

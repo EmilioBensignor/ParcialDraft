@@ -19,8 +19,8 @@
     </div>
     <nav>
       <ul>
-        <li><a href="/index.html">Crear un Equipo</a></li>
-        <li><a href="/web_app/misEquipos.html">Mis Equipos</a></li>
+        <li><button onclick="paginaCrearEquipo()">Crear un Equipo</button></li>
+        <li><button onclick="paginaMisEquipos()">Mis Equipos</button></li>
       </ul>
     </nav>
   </header>
@@ -44,7 +44,7 @@
       </div>
     </section>
     <section id="crearEquipo" class="columnAlignCenter">
-      <form>
+      <form id="formEquipoEstrella">
         <div id="seccionManager" class="seccionManager">
           <h2>Crea a tu Manager</h2>
           <div class="filaForm">
@@ -108,29 +108,32 @@
             </div>
           </div>
           <div id="elegirJugadores">
-            <p class="explicacion">Aprete uno de los circulos amarillos para seleccionar al jugador de esa posición</p>
-            <div id="cancha" class="cancha">
-              <div class="porteria">
-                <div id="por" class="portero">
-                  <button type="button">POR</button>
+            <div class="canchaContainer columnAlignCenter">
+              <p class="explicacion">Aprete uno de los circulos amarillos para seleccionar al jugador de esa posición
+              </p>
+              <div id="cancha" class="cancha">
+                <div class="porteria">
+                  <div id="por" class="portero">
+                    <button type="button">POR</button>
+                  </div>
                 </div>
+                <div class="defensa">
+                  <div id="li" class="lateralIzquierdo">
+                    <button type="button">LI</button>
+                  </div>
+                  <div id="dfci" class="centralIzquierdo">
+                    <button type="button">DFC</button>
+                  </div>
+                  <div id="dfcd" class="centralDerecho">
+                    <button type="button">DFC</button>
+                  </div>
+                  <div id="ld" class="lateralDerecho">
+                    <button type="button">LD</button>
+                  </div>
+                </div>
+                <div id="mediocampo" class="mediocampo"></div>
+                <div id="delantera" class="delantera"></div>
               </div>
-              <div class="defensa">
-                <div id="li" class="lateralIzquierdo">
-                  <button type="button">LI</button>
-                </div>
-                <div id="dfci" class="centralIzquierdo">
-                  <button type="button">DFC</button>
-                </div>
-                <div id="dfcd" class="centralDerecho">
-                  <button type="button">DFC</button>
-                </div>
-                <div id="ld" class="lateralDerecho">
-                  <button type="button">LD</button>
-                </div>
-              </div>
-              <div id="mediocampo" class="mediocampo"></div>
-              <div id="delantera" class="delantera"></div>
             </div>
             <div class="finalEquipo">
               <button type="submit" id="btnEquipo" class="botonPrimario">Terminar Equipo</button>
@@ -140,6 +143,7 @@
         </div>
       </form>
     </section>
+    <section id="misEquiposContainer" class="columnAlignCenter"></section>
     <div id="modalOverlay" class="modalOverlay">
       <div class="modal">
         <button onclick="cerrarModal()" class="cruzModal">X</button>
@@ -148,7 +152,7 @@
     </div>
   </main>
   <footer class="columnAlignCenter">
-    Lucas Bernath
+    <button onclick="modalFooter()" class="botonPrimario">Información de Lucas Bernath</button>
   </footer>
   <script src="web_app/main.js"></script>
 </body>

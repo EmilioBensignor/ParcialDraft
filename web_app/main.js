@@ -107,6 +107,7 @@ const delanterosCentrales = [
   "DC/ronaldo.png",
 ];
 
+const formEquipoEstrella = document.getElementById("formEquipoEstrella");
 const introduccion = document.getElementById("introduccion");
 const crearEquipo = document.getElementById("crearEquipo");
 const seccionManager = document.getElementById("seccionManager");
@@ -114,6 +115,7 @@ const avatarContainer = document.getElementById("avatarContainer");
 const seccionEquipo = document.getElementById("seccionEquipo");
 const elegirFormacion = document.getElementById("elegirFormacion");
 const elegirJugadores = document.getElementById("elegirJugadores");
+
 const modalOverlay = document.getElementById("modalOverlay");
 const contenidoModal = document.getElementById("contenidoModal");
 
@@ -128,16 +130,57 @@ const errorEdad = document.getElementById('errorEdad');
 const errorVestimenta = document.getElementById('errorVestimenta');
 const errorAvatar = document.getElementById('errorAvatar');
 
+let misEquipos = [];
+
 // Borrar
 introduccion.style.display = "none";
 crearEquipo.style.display = "flex";
 seccionManager.style.display = "none";
 seccionEquipo.style.display = "flex";
 
+function paginaCrearEquipo() {
+  window.location.reload();
+}
+
+const misEquiposContainer = document.getElementById("misEquiposContainer");
+
+function paginaMisEquipos() {
+  introduccion.style.display = "none";
+  crearEquipo.style.display = "none";
+  seccionManager.style.display = "none";
+  seccionEquipo.style.display = "none";
+  dibujarMisEquipos();
+}
+
+function dibujarMisEquipos() {
+  misEquipos = JSON.parse(localStorage.getItem('misEquipos')) || [];
+  misEquiposContainer.innerHTML = '';
+  misEquipos.forEach(equipo => {
+    const divEquipo = document.createElement('div');
+    divEquipo.classList.add('equipo');
+    const manager = document.createElement('p');
+    manager.textContent = `${equipo[0][1][0][1]} ${equipo[0][1][1][1]}`;
+    divEquipo.appendChild(manager);
+    const formacion = document.createElement('p');
+    formacion.textContent = `Formación: ${equipo[1][1]}`;
+    divEquipo.appendChild(formacion);
+    const jugadores = document.createElement('p');
+    jugadores.textContent = 'Jugadores:';
+    divEquipo.appendChild(jugadores);
+    for (let posicion in equipo[2][1]) {
+      const jugador = document.createElement('p');
+      jugador.textContent = `${posicion}: ${equipo[2][1][posicion]}`;
+      divEquipo.appendChild(jugador);
+    }
+    misEquiposContainer.appendChild(divEquipo);
+  });
+}
+
 const btnEmpezar = document.getElementById("btnEmpezar");
 btnEmpezar.addEventListener("click", function () {
   introduccion.style.display = "none";
   crearEquipo.style.display = "flex";
+  seccionManager.style.display = "flex";
 });
 
 let managerValido = false;
@@ -336,6 +379,7 @@ confirmarFormacion.addEventListener("click", function () {
 });
 
 let jugadores = [];
+let jugadoresSeleccionadosGlobal = [];
 
 function dibujarEquipo(formacion) {
   const cancha = document.getElementById('cancha');
@@ -451,8 +495,9 @@ function abrirModalJugador(posicion) {
   const jugadoresSeleccionados = [];
   while (jugadoresSeleccionados.length < 5) {
     const indiceRandom = Math.floor(Math.random() * jugadoresArray.length);
-    if (!jugadoresSeleccionados.includes(jugadoresArray[indiceRandom])) {
-      jugadoresSeleccionados.push(jugadoresArray[indiceRandom]);
+    const jugadorSeleccionado = jugadoresArray[indiceRandom];
+    if (!jugadoresSeleccionados.includes(jugadorSeleccionado) && !jugadoresSeleccionadosGlobal.includes(jugadorSeleccionado)) {
+      jugadoresSeleccionados.push(jugadorSeleccionado);
     }
   }
 
@@ -468,8 +513,11 @@ function abrirModalJugador(posicion) {
       const imgSeleccionada = document.createElement('img');
       imgSeleccionada.src = `/web_app/imagenes/jugadores/${jugador}`;
       imgSeleccionada.alt = 'Jugador Seleccionado';
-      document.querySelector(`#${posicion.toLowerCase()}`).appendChild(imgSeleccionada);
+      const parentElement = document.querySelector(`#${posicion.toLowerCase()}`);
+      parentElement.appendChild(imgSeleccionada);
+      parentElement.style.pointerEvents = 'none';
       equipo[posicion] = jugador;
+      jugadoresSeleccionadosGlobal.push(jugador);
 
       cerrarModal();
     });
@@ -491,6 +539,8 @@ function seleccionarJugadoresAleatorios(array, cantidad) {
 const btnEquipo = document.getElementById("btnEquipo");
 btnEquipo.addEventListener("click", terminarEquipo);
 
+let equipoEstrella = [];
+
 function terminarEquipo(event) {
   event.preventDefault();
   const errorEquipo = document.getElementById('errorEquipo');
@@ -510,10 +560,37 @@ function terminarEquipo(event) {
     return;
   }
 
-  console.log("Equipo completo", equipo);
-  
-  // seccionEquipo.style.display = "none";
-  // window.location.href = "web_app/misEquipos.html";
+  equipoEstrella = [];
+  equipoEstrella[0] = ['manager', managerInfo];
+  equipoEstrella[1] = ['formacion', formacionSeleccionada];
+  equipoEstrella[2] = ['jugadores', equipo];
+
+  jugadoresSeleccionadosGlobal = [];
+
+  misEquipos = JSON.parse(localStorage.getItem('misEquipos')) || [];
+  misEquipos.push(equipoEstrella);
+  localStorage.setItem('misEquipos', JSON.stringify(misEquipos));
+  formEquipoEstrella.reset();
+  paginaMisEquipos();
+}
+
+function modalFooter() {
+  modalOverlay.style.display = "block";
+  contenidoModal.innerHTML = '';
+
+  contenidoModal.innerHTML = `
+    <p><span>Nombre de la carrera:</span> Diseño Multimedial</p>
+    <p><span>Nombre de la materia:</span> Diseño y Programación Web 1</p>
+    <p><span>Cuatrimestre:</span> 3ro</p>
+    <p><span>Sigla de la comisión:</span></p>
+    <p><span>Turno:</span> Mañana</p>
+    <p><span>Apellido y Nombre Alumno:</span> Bernath Lucas</p>
+    <p><span>Apellido y Nombre Docente:</span> Toyos Omar</p>
+    <p><span>Instancia de Evaluación:</span> Segundo Parcial</p>
+    FALTA LA FOTOOOO Y SIGLA
+  `;
+
+  contenidoModal.classList.add('contenidoFooter');
 }
 
 function cerrarModal() {
