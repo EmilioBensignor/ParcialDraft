@@ -132,17 +132,12 @@ const errorAvatar = document.getElementById('errorAvatar');
 
 let misEquipos = [];
 
-// Borrar
-introduccion.style.display = "none";
-crearEquipo.style.display = "flex";
-seccionManager.style.display = "none";
-seccionEquipo.style.display = "flex";
-
 function paginaCrearEquipo() {
   window.location.reload();
 }
 
 const misEquiposContainer = document.getElementById("misEquiposContainer");
+const misEquiposEstrellas = document.getElementById("misEquiposEstrellas");
 
 function paginaMisEquipos() {
   introduccion.style.display = "none";
@@ -153,27 +148,56 @@ function paginaMisEquipos() {
 }
 
 function dibujarMisEquipos() {
+  misEquiposContainer.style.display = 'flex';
   misEquipos = JSON.parse(localStorage.getItem('misEquipos')) || [];
-  misEquiposContainer.innerHTML = '';
-  misEquipos.forEach(equipo => {
-    const divEquipo = document.createElement('div');
-    divEquipo.classList.add('equipo');
-    const manager = document.createElement('p');
-    manager.textContent = `${equipo[0][1][0][1]} ${equipo[0][1][1][1]}`;
-    divEquipo.appendChild(manager);
-    const formacion = document.createElement('p');
-    formacion.textContent = `Formación: ${equipo[1][1]}`;
-    divEquipo.appendChild(formacion);
-    const jugadores = document.createElement('p');
-    jugadores.textContent = 'Jugadores:';
-    divEquipo.appendChild(jugadores);
-    for (let posicion in equipo[2][1]) {
-      const jugador = document.createElement('p');
-      jugador.textContent = `${posicion}: ${equipo[2][1][posicion]}`;
-      divEquipo.appendChild(jugador);
-    }
-    misEquiposContainer.appendChild(divEquipo);
-  });
+
+  misEquiposEstrellas.innerHTML = '';
+  const sinEquipos = document.createElement('p');
+  sinEquipos.textContent = 'No hay equipos creados';
+  sinEquipos.style.textAlign = 'center';
+  if (misEquipos.length === 0) {
+    misEquiposEstrellas.appendChild(sinEquipos);
+  }
+  else {
+    misEquipos.forEach(equipo => {
+      console.log(equipo);
+      const divEquipo = document.createElement('div');
+      divEquipo.classList.add('equipoEstrella');
+      divEquipo.innerHTML = `
+      <div class="acciones">
+        <button id="btnEditarEquipo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none"><path d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"/><path fill="currentColor" d="m10.756 6.17l7.07 7.071l-7.173 7.174a2 2 0 0 1-1.238.578L9.239 21H4.006a1.01 1.01 0 0 1-1.004-.9l-.006-.11v-5.233a2 2 0 0 1 .467-1.284l.12-.13l7.173-7.174Zm3.14-3.14a2 2 0 0 1 2.701-.117l.127.117l4.243 4.243a2 2 0 0 1 .117 2.7l-.117.128l-1.726 1.726l-7.07-7.071z"/></g></svg>
+        </button>
+        <button id="btnBorrarEquipo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd"><path d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"/><path fill="currentColor" d="M14.28 2a2 2 0 0 1 1.897 1.368L16.72 5H20a1 1 0 1 1 0 2l-.003.071l-.867 12.143A3 3 0 0 1 16.138 22H7.862a3 3 0 0 1-2.992-2.786L4.003 7.07L4 7a1 1 0 0 1 0-2h3.28l.543-1.632A2 2 0 0 1 9.721 2zM9 10a1 1 0 0 0-.993.883L8 11v6a1 1 0 0 0 1.993.117L10 17v-6a1 1 0 0 0-1-1m6 0a1 1 0 0 0-1 1v6a1 1 0 1 0 2 0v-6a1 1 0 0 0-1-1m-.72-6H9.72l-.333 1h5.226z"/></g></svg>
+        </button>
+      </div>
+      <h3>${equipo[2][1][0]}</h3>
+      <div class="detalleEstrella">
+        <p><strong>Valoración:</strong> ${equipo[2][1][1]} 🌟</p>
+        <p><strong>Liga:</strong> ${equipo[2][1][2]}</p>
+      </div>
+      <div class="managerJugador">
+        <div class="managerEstrella">
+        <p><strong>Dirigido por: </strong>${equipo[0][1][0][1]} ${equipo[0][1][1][1]}</p>
+        <img src="/web_app/imagenes${equipo[0][1][4][1]}" alt="Manager">
+        </div>
+        <div class="jugadorEstrella">
+        <p><strong>Jugador destacado</strong></p>
+          <img src="/web_app/imagenes/jugadores/${equipo[1][1][Object.keys(equipo[1][1])[Math.floor(Math.random() * 11)]]}" alt="Jugador Destacado">
+        </div>
+      </div>
+    `;
+    misEquiposEstrellas.appendChild(divEquipo);
+
+      const btnEditarEquipo = divEquipo.querySelector('#btnEditarEquipo');
+      btnEditarEquipo.addEventListener('click', editarEquipo);
+
+      const btnBorrarEquipo = divEquipo.querySelector('#btnBorrarEquipo');
+      btnBorrarEquipo.addEventListener('click', borrarEquipo);
+    });
+  }
+
 }
 
 const btnEmpezar = document.getElementById("btnEmpezar");
@@ -560,10 +584,113 @@ function terminarEquipo(event) {
     return;
   }
 
+  abrirModalDetalle();
+}
+
+function abrirModalDetalle() {
+  modalOverlay.style.display = "block";
+  contenidoModal.innerHTML = '';
+  contenidoModal.innerHTML = `
+    <form class="formDetalle">
+      <h3>¡Termina de personalizar tu Equipo Estrella!</h3>
+      <div class="filaForm">
+        <div>
+          <label for="nombreEquipo">Nombre del equipo</label>
+          <input type="text" id="nombreEquipo">
+          <p id="errorNombreEquipo" class="error"></p>
+        </div>
+        <div>
+          <p>¿Cuántas estrellas le darías a tu equipo?</p>
+          <div class="estrellasEquipo">
+            <div>
+              <input type="radio" name="valoracion" id="uno" value="1">
+              <label for="uno">1</label>
+            </div>
+            <div>
+              <input type="radio" name="valoracion" id="dos" value="2">
+              <label for="dos">2</label>
+            </div>
+            <div>
+              <input type="radio" name="valoracion" id="tres" value="3">
+              <label for="tres">3</label>
+            </div>
+            <div>
+              <input type="radio" name="valoracion" id="cuatro" value="4">
+              <label for="cuatro">4</label>
+            </div>
+            <div>
+              <input type="radio" name="valoracion" id="cinco" value="5">
+              <label for="cinco">5</label>
+            </div>
+          </div>
+          <p id="errorValoracionEquipo" class="error"></p>
+        </div>
+      </div>
+      <div class="filaForm">
+        <div class="formacionContainer">
+          <label for="ligaEquipo">Liga profesional</label>
+          <select id="ligaEquipo">
+            <option value="">Seleccione</option>
+            <option value="premier">Premier League</option>
+            <option value="bundesliga">Bundesliga</option>
+            <option value="seria">Serie A</option>
+            <option value="ligue1">Ligue 1</option>
+            <option value="laliga">LaLiga</option>
+          </select>
+          <p id="errorligaEquipo" class="error"></p>
+        </div>
+        <button id="guardarDetalle" class="botonPrimario">Guardar Equipo</button>
+      </div>
+    </form>
+  `;
+
+  const guardarDetalle = document.getElementById("guardarDetalle");
+  guardarDetalle.addEventListener("click", guardarEquipoEstrella);
+}
+
+function guardarEquipoEstrella(event) {
+  event.preventDefault();
+  cerrarModal();
+  const nombreEquipo = document.getElementById('nombreEquipo').value;
+  const valoracionEquipo = document.querySelector('input[name="valoracion"]:checked');
+  const ligaEquipo = document.getElementById('ligaEquipo').value;
+
+  const errorNombreEquipo = document.getElementById('errorNombreEquipo');
+  const errorValoracionEquipo = document.getElementById('errorValoracionEquipo');
+  const errorligaEquipo = document.getElementById('errorligaEquipo');
+
+  errorNombreEquipo.style.display = 'none';
+  errorNombreEquipo.textContent = '';
+  errorValoracionEquipo.style.display = 'none';
+  errorValoracionEquipo.textContent = '';
+  errorligaEquipo.style.display = 'none';
+  errorligaEquipo.textContent = '';
+
+  if (!nombreEquipo) {
+    errorNombreEquipo.style.display = 'block';
+    errorNombreEquipo.textContent = 'El nombre del equipo es requerido';
+  } else if (nombreEquipo.length < 2) {
+    errorNombreEquipo.style.display = 'block';
+    errorNombreEquipo.textContent = 'El nombre del equipo debe tener al menos 2 caracteres';
+  } else if (nombreEquipo.length > 20) {
+    errorNombreEquipo.style.display = 'block';
+    errorNombreEquipo.textContent = 'El nombre del equipo debe tener menos de 20 caracteres';
+  }
+
+  if (!valoracionEquipo) {
+    errorValoracionEquipo.style.display = 'block';
+    errorValoracionEquipo.textContent = 'La valoración del equipo es requerida';
+  }
+
+  if (!ligaEquipo) {
+    errorligaEquipo.style.display = 'block';
+    errorligaEquipo.textContent = 'La liga del equipo es requerida';
+  }
+
   equipoEstrella = [];
   equipoEstrella[0] = ['manager', managerInfo];
-  equipoEstrella[1] = ['formacion', formacionSeleccionada];
-  equipoEstrella[2] = ['jugadores', equipo];
+  equipoEstrella[1] = ['jugadores', equipo];
+  equipoEstrella[2] = ['detalle', [nombreEquipo, valoracionEquipo.value, ligaEquipo]];
 
   jugadoresSeleccionadosGlobal = [];
 
@@ -572,6 +699,134 @@ function terminarEquipo(event) {
   localStorage.setItem('misEquipos', JSON.stringify(misEquipos));
   formEquipoEstrella.reset();
   paginaMisEquipos();
+}
+
+function editarEquipo() {
+  const equipoIndex = misEquipos.findIndex(equipo => equipo[2][1][0] === this.parentElement.parentElement.querySelector('h3').textContent);
+  if (equipoIndex !== -1) {
+    const equipo = misEquipos[equipoIndex];
+    modalOverlay.style.display = "block";
+    contenidoModal.innerHTML = `
+      <form class="formDetalle">
+        <h3>Edita los detalles de tu Equipo Estrella</h3>
+        <div class="filaForm">
+          <div>
+            <label for="nombreEquipo">Nombre del equipo</label>
+            <input type="text" id="nombreEquipo" value="${equipo[2][1][0]}">
+            <p id="errorNombreEquipo" class="error"></p>
+          </div>
+          <div>
+            <p>¿Cuántas estrellas le darías a tu equipo?</p>
+            <div class="estrellasEquipo">
+              ${[1, 2, 3, 4, 5].map(star => `
+                <div>
+                  <input type="radio" name="valoracion" id="star${star}" value="${star}" ${equipo[2][1][1] == star ? 'checked' : ''}>
+                  <label for="star${star}">${star}</label>
+                </div>
+              `).join('')}
+            </div>
+            <p id="errorValoracionEquipo" class="error"></p>
+          </div>
+        </div>
+        <div class="filaForm">
+          <div class="formacionContainer">
+            <label for="ligaEquipo">Liga profesional</label>
+            <select id="ligaEquipo">
+              <option value="">Seleccione</option>
+              <option value="premier" ${equipo[2][1][2] === 'premier' ? 'selected' : ''}>Premier League</option>
+              <option value="bundesliga" ${equipo[2][1][2] === 'bundesliga' ? 'selected' : ''}>Bundesliga</option>
+              <option value="seria" ${equipo[2][1][2] === 'seria' ? 'selected' : ''}>Serie A</option>
+              <option value="ligue1" ${equipo[2][1][2] === 'ligue1' ? 'selected' : ''}>Ligue 1</option>
+              <option value="laliga" ${equipo[2][1][2] === 'laliga' ? 'selected' : ''}>LaLiga</option>
+            </select>
+            <p id="errorligaEquipo" class="error"></p>
+          </div>
+          <button id="guardarDetalle" class="botonPrimario">Guardar Equipo</button>
+        </div>
+      </form>
+    `;
+
+    const guardarDetalle = document.getElementById("guardarDetalle");
+    guardarDetalle.addEventListener("click", function (event) {
+      event.preventDefault();
+      const nombreEquipo = document.getElementById('nombreEquipo').value;
+      const valoracionEquipo = document.querySelector('input[name="valoracion"]:checked');
+      const ligaEquipo = document.getElementById('ligaEquipo').value;
+
+      const errorNombreEquipo = document.getElementById('errorNombreEquipo');
+      const errorValoracionEquipo = document.getElementById('errorValoracionEquipo');
+      const errorligaEquipo = document.getElementById('errorligaEquipo');
+
+      errorNombreEquipo.style.display = 'none';
+      errorNombreEquipo.textContent = '';
+      errorValoracionEquipo.style.display = 'none';
+      errorValoracionEquipo.textContent = '';
+      errorligaEquipo.style.display = 'none';
+      errorligaEquipo.textContent = '';
+
+      if (!nombreEquipo) {
+        errorNombreEquipo.style.display = 'block';
+        errorNombreEquipo.textContent = 'El nombre del equipo es requerido';
+        return;
+      } else if (nombreEquipo.length < 2) {
+        errorNombreEquipo.style.display = 'block';
+        errorNombreEquipo.textContent = 'El nombre del equipo debe tener al menos 2 caracteres';
+        return;
+      } else if (nombreEquipo.length > 20) {
+        errorNombreEquipo.style.display = 'block';
+        errorNombreEquipo.textContent = 'El nombre del equipo debe tener menos de 20 caracteres';
+        return;
+      }
+
+      if (!valoracionEquipo) {
+        errorValoracionEquipo.style.display = 'block';
+        errorValoracionEquipo.textContent = 'La valoración del equipo es requerida';
+        return;
+      }
+
+      if (!ligaEquipo) {
+        errorligaEquipo.style.display = 'block';
+        errorligaEquipo.textContent = 'La liga del equipo es requerida';
+        return;
+      }
+
+      equipo[2][1][0] = nombreEquipo;
+      equipo[2][1][1] = valoracionEquipo.value;
+      equipo[2][1][2] = ligaEquipo;
+
+      localStorage.setItem('misEquipos', JSON.stringify(misEquipos));
+      
+      cerrarModal();
+      paginaMisEquipos();
+    });
+  }
+}
+
+function borrarEquipo() {
+  modalOverlay.style.display = "block";
+  contenidoModal.innerHTML = '';
+  contenidoModal.classList.add('contenidoBorrar');
+  contenidoModal.innerHTML = `
+    <p>¿Estás seguro que deseas borrar este equipo?</p>
+    <div>
+      <button id="confirmarBorrar" class="botonPrimario botonRojo">Confirmar</button>
+      <button id="cancelarBorrar" class="botonPrimario botonCancelar">Cancelar</button>
+    </div>
+  `;
+
+  const confirmarBorrar = document.getElementById("confirmarBorrar");
+  confirmarBorrar.addEventListener("click", function () {
+    const equipoIndex = misEquipos.findIndex(equipo => equipo[2][1][0] === equipo[2][1][0]);
+    if (equipoIndex !== -1) {
+      misEquipos.splice(equipoIndex, 1);
+      localStorage.setItem('misEquipos', JSON.stringify(misEquipos));
+      paginaMisEquipos();
+      cerrarModal();
+    }
+  });
+
+  const cancelarBorrar = document.getElementById("cancelarBorrar");
+  cancelarBorrar.addEventListener("click", cerrarModal);
 }
 
 function modalFooter() {
@@ -594,6 +849,7 @@ function modalFooter() {
 }
 
 function cerrarModal() {
+  contenidoModal.className = '';
   modalOverlay.style.display = "none";
 }
 
