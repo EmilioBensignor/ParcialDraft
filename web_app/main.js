@@ -847,9 +847,9 @@ function modalFooter() {
   contenidoModal.innerHTML = `
     <p><span>Nombre de la carrera:</span> Diseño Multimedial</p>
     <p><span>Nombre de la materia:</span> Diseño y Programación Web 1</p>
-    <p><span>Año:</span> </p>
+    <p><span>Año:</span> 2024</p>
     <p><span>Cuatrimestre:</span> 3ro</p>
-    <p><span>Sigla de la comisión:</p>
+    <p><span>Sigla de la comisión:</span> DMM3AP</p>
     <p><span>Turno:</span> Mañana</p>
     <p><span>Apellido y Nombre Alumno:</span> Bernath Lucas</p>
     <p><span>Apellido y Nombre Docente:</span> Toyos Omar</p>
