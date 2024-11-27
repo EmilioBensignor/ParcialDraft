@@ -166,6 +166,7 @@ p {
 
 .modal {
   max-width: 95%;
+  max-height: 95%;
   height: max-content;
   display: flex;
   flex-direction: column;
@@ -190,6 +191,7 @@ p {
 
 #contenidoModal button {
   width: 40%;
+  max-width: 8.125rem;
   border: none;
   background: none;
   transition: all 0.3s;
@@ -404,6 +406,7 @@ form button {
 
 #contenidoModal .formDetalle button {
   width: max-content;
+  max-width: max-content;
   background-color: var(--color-primario);
   padding: 1rem 2rem;
 }
@@ -658,6 +661,10 @@ footer .botonPrimario:hover {
     margin: 2rem;
   }
 
+  #contenidoModal button {
+    max-width: 10rem;
+  }
+
   form,
   .formDetalle {
     max-width: 540px;
@@ -721,10 +728,6 @@ footer .botonPrimario:hover {
     max-height: 370px;
   }
 
-  #contenidoModal button {
-    width: 10.625rem;
-  }
-
   .cancha {
     width: 26rem;
     height: 34rem;
@@ -747,6 +750,12 @@ footer .botonPrimario:hover {
 
   .formacionTres {
     gap: 1.25rem;
+  }
+}
+
+@media (width >=800px) {
+  #contenidoModal button {
+    max-width: 13rem;
   }
 }
 
@@ -840,6 +849,10 @@ footer .botonPrimario:hover {
 
   #introduccion img {
     max-height: 500px;
+  }
+
+  #contenidoModal {
+    flex-wrap: nowrap;
   }
 
   .cancha {

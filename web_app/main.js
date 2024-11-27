@@ -181,11 +181,11 @@ function dibujarMisEquipos() {
       <div class="managerJugador">
         <div class="managerEstrella">
         <p><strong>Dirigido por: </strong>${equipo[0][1][0][1]} ${equipo[0][1][1][1]}</p>
-        <img src="/web_app/imagenes${equipo[0][1][4][1]}" alt="Manager">
+        <img src="web_app/imagenes${equipo[0][1][4][1]}" alt="Manager">
         </div>
         <div class="jugadorEstrella">
         <p><strong>Jugador destacado</strong></p>
-          <img src="/web_app/imagenes/jugadores/${equipo[1][1][Object.keys(equipo[1][1])[Math.floor(Math.random() * 11)]]}" alt="Jugador Destacado">
+          <img src="web_app/imagenes/jugadores/${equipo[1][1][Object.keys(equipo[1][1])[Math.floor(Math.random() * 11)]]}" alt="Jugador Destacado">
         </div>
       </div>
     `;
@@ -261,7 +261,7 @@ function abrirModalManager(managersSeleccionados) {
     managersSeleccionados.forEach(manager => {
       const buttonManager = document.createElement('button');
       const img = document.createElement('img');
-      img.src = `/web_app/imagenes/${manager}`;
+      img.src = `web_app/imagenes/${manager}`;
       img.alt = 'Manager';
       buttonManager.appendChild(img);
       buttonManager.addEventListener('click', function () {
@@ -530,14 +530,14 @@ function abrirModalJugador(posicion) {
   jugadoresSeleccionados.forEach(jugador => {
     const buttonJugador = document.createElement('button');
     const img = document.createElement('img');
-    img.src = `/web_app/imagenes/jugadores/${jugador}`;
+    img.src = `web_app/imagenes/jugadores/${jugador}`;
     img.alt = 'Jugador';
     buttonJugador.appendChild(img);
     buttonJugador.addEventListener('click', function () {
       const botonPosicion = document.querySelector(`#${posicion.toLowerCase()} button`);
       botonPosicion.style.display = 'none';
       const imgSeleccionada = document.createElement('img');
-      imgSeleccionada.src = `/web_app/imagenes/jugadores/${jugador}`;
+      imgSeleccionada.src = `web_app/imagenes/jugadores/${jugador}`;
       imgSeleccionada.alt = 'Jugador Seleccionado';
       const contenedorJugador = document.querySelector(`#${posicion.toLowerCase()}`);
       contenedorJugador.appendChild(imgSeleccionada);
