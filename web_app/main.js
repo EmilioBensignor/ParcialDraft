@@ -107,9 +107,9 @@ const delanterosCentrales = [
   "DC/ronaldo.png",
 ];
 
-const formEquipoEstrella = document.getElementById("formEquipoEstrella");
 const introduccion = document.getElementById("introduccion");
 const crearEquipo = document.getElementById("crearEquipo");
+const formEquipoEstrella = document.getElementById("formEquipoEstrella");
 const seccionManager = document.getElementById("seccionManager");
 const avatarContainer = document.getElementById("avatarContainer");
 const seccionEquipo = document.getElementById("seccionEquipo");
@@ -119,16 +119,16 @@ const elegirJugadores = document.getElementById("elegirJugadores");
 const modalOverlay = document.getElementById("modalOverlay");
 const contenidoModal = document.getElementById("contenidoModal");
 
-const nombreInput = document.getElementById('nombre');
-const apellidoInput = document.getElementById('apellido');
-const edadInput = document.getElementById('edad');
-const vestimentaInputs = document.getElementsByName('vestimenta');
+const nombreInput = document.getElementById("nombre");
+const apellidoInput = document.getElementById("apellido");
+const edadInput = document.getElementById("edad");
+const vestimentaInputs = document.getElementsByName("vestimenta");
 
-const errorNombre = document.getElementById('errorNombre');
-const errorApellido = document.getElementById('errorApellido');
-const errorEdad = document.getElementById('errorEdad');
-const errorVestimenta = document.getElementById('errorVestimenta');
-const errorAvatar = document.getElementById('errorAvatar');
+const errorNombre = document.getElementById("errorNombre");
+const errorApellido = document.getElementById("errorApellido");
+const errorEdad = document.getElementById("errorEdad");
+const errorVestimenta = document.getElementById("errorVestimenta");
+const errorAvatar = document.getElementById("errorAvatar");
 
 let misEquipos = [];
 
@@ -152,13 +152,14 @@ function dibujarMisEquipos() {
   misEquipos = JSON.parse(localStorage.getItem('misEquipos')) || [];
 
   misEquiposEstrellas.innerHTML = '';
+
   const sinEquipos = document.createElement('p');
   sinEquipos.textContent = 'No hay equipos creados';
   sinEquipos.style.textAlign = 'center';
+
   if (misEquipos.length === 0) {
     misEquiposEstrellas.appendChild(sinEquipos);
-  }
-  else {
+  } else {
     misEquipos.forEach(equipo => {
       console.log(equipo);
       const divEquipo = document.createElement('div');
@@ -188,7 +189,7 @@ function dibujarMisEquipos() {
         </div>
       </div>
     `;
-    misEquiposEstrellas.appendChild(divEquipo);
+      misEquiposEstrellas.appendChild(divEquipo);
 
       const btnEditarEquipo = divEquipo.querySelector('#btnEditarEquipo');
       btnEditarEquipo.addEventListener('click', editarEquipo);
@@ -197,7 +198,6 @@ function dibujarMisEquipos() {
       btnBorrarEquipo.addEventListener('click', borrarEquipo);
     });
   }
-
 }
 
 const btnEmpezar = document.getElementById("btnEmpezar");
@@ -256,6 +256,7 @@ elegirAvatar.addEventListener("click", function () {
 function abrirModalManager(managersSeleccionados) {
   modalOverlay.style.display = "block";
   contenidoModal.innerHTML = '';
+
   if (managersSeleccionados) {
     managersSeleccionados.forEach(manager => {
       const buttonManager = document.createElement('button');
@@ -300,7 +301,7 @@ function validarManager() {
   } else if (!isNaN(nombre)) {
     managerValido = false;
     errorNombre.style.display = 'block';
-    errorNombre.textContent = 'El nombre solo puede contener letras';
+    errorNombre.textContent = 'El nombre no puede ser un numero';
   } else if (nombre.length < 2) {
     managerValido = false;
     errorNombre.style.display = 'block';
@@ -319,7 +320,7 @@ function validarManager() {
   } else if (!isNaN(apellido)) {
     managerValido = false;
     errorApellido.style.display = 'block';
-    errorApellido.textContent = 'El apellido solo puede contener letras';
+    errorApellido.textContent = 'El apellido no puede ser un numero';
   } else if (apellido.length < 2) {
     managerValido = false;
     errorApellido.style.display = 'block';
@@ -382,7 +383,7 @@ function guardarManagerInfo() {
 }
 
 let formacionSeleccionada = '';
-let equipo = {};
+let equipo = [];
 
 const confirmarFormacion = document.getElementById("confirmarFormacion");
 confirmarFormacion.addEventListener("click", function () {
@@ -397,6 +398,7 @@ confirmarFormacion.addEventListener("click", function () {
     errorFormacion.textContent = 'Debe seleccionar una formación';
     return;
   }
+
   elegirFormacion.style.display = "none";
   elegirJugadores.style.display = "flex";
   dibujarEquipo(formacionSeleccionada);
@@ -493,29 +495,29 @@ function dibujarEquipo(formacion) {
   });
 }
 
-const jugadoresPorPosicion = {
-  POR: porteros,
-  DFCD: defensoresCentrales,
-  DFCI: defensoresCentrales,
-  LD: lateralesDerechos,
-  LI: lateralesIzquierdos,
-  MDO: mediocampistasCentrales,
-  MCI: mediocampistasCentrales,
-  MCD: mediocampistasCentrales,
-  MC: mediocampistasCentrales,
-  MCO: mediocampistasOfensivos,
-  ED: extremosDerechos,
-  EI: extremosIzquierdos,
-  DC: delanterosCentrales,
-  DCI: delanterosCentrales,
-  DCD: delanterosCentrales,
-};
+const jugadoresPorPosicion = [
+  ["POR", porteros],
+  ["DFCD", defensoresCentrales],
+  ["DFCI", defensoresCentrales],
+  ["LD", lateralesDerechos],
+  ["LI", lateralesIzquierdos],
+  ["MDO", mediocampistasCentrales],
+  ["MCI", mediocampistasCentrales],
+  ["MCD", mediocampistasCentrales],
+  ["MC", mediocampistasCentrales],
+  ["MCO", mediocampistasCentrales],
+  ["ED", extremosDerechos],
+  ["EI", extremosIzquierdos],
+  ["DC", delanterosCentrales],
+  ["DCI", delanterosCentrales],
+  ["DCD", delanterosCentrales],
+];
 
 function abrirModalJugador(posicion) {
   modalOverlay.style.display = "block";
   contenidoModal.innerHTML = '';
 
-  const jugadoresArray = jugadoresPorPosicion[posicion];
+  const jugadoresArray = jugadoresPorPosicion.find(item => item[0] === posicion)[1];
   const jugadoresSeleccionados = [];
   while (jugadoresSeleccionados.length < 5) {
     const indiceRandom = Math.floor(Math.random() * jugadoresArray.length);
@@ -537,9 +539,9 @@ function abrirModalJugador(posicion) {
       const imgSeleccionada = document.createElement('img');
       imgSeleccionada.src = `/web_app/imagenes/jugadores/${jugador}`;
       imgSeleccionada.alt = 'Jugador Seleccionado';
-      const parentElement = document.querySelector(`#${posicion.toLowerCase()}`);
-      parentElement.appendChild(imgSeleccionada);
-      parentElement.style.pointerEvents = 'none';
+      const contenedorJugador = document.querySelector(`#${posicion.toLowerCase()}`);
+      contenedorJugador.appendChild(imgSeleccionada);
+      contenedorJugador.style.pointerEvents = 'none';
       equipo[posicion] = jugador;
       jugadoresSeleccionadosGlobal.push(jugador);
 
@@ -549,17 +551,6 @@ function abrirModalJugador(posicion) {
   });
 }
 
-function seleccionarJugadoresAleatorios(array, cantidad) {
-  const seleccionados = [];
-  while (seleccionados.length < cantidad) {
-    const indiceRandom = Math.floor(Math.random() * array.length);
-    if (!seleccionados.includes(array[indiceRandom])) {
-      seleccionados.push(array[indiceRandom]);
-    }
-  }
-  return seleccionados;
-}
-
 const btnEquipo = document.getElementById("btnEquipo");
 btnEquipo.addEventListener("click", terminarEquipo);
 
@@ -567,6 +558,7 @@ let equipoEstrella = [];
 
 function terminarEquipo(event) {
   event.preventDefault();
+
   const errorEquipo = document.getElementById('errorEquipo');
   errorEquipo.style.display = 'none';
   errorEquipo.textContent = '';
@@ -590,6 +582,7 @@ function terminarEquipo(event) {
 function abrirModalDetalle() {
   modalOverlay.style.display = "block";
   contenidoModal.innerHTML = '';
+
   contenidoModal.innerHTML = `
     <form class="formDetalle">
       <h3>¡Termina de personalizar tu Equipo Estrella!</h3>
@@ -650,9 +643,10 @@ function abrirModalDetalle() {
 
 function guardarEquipoEstrella(event) {
   event.preventDefault();
-  cerrarModal();
+
   const nombreEquipo = document.getElementById('nombreEquipo').value;
-  const valoracionEquipo = document.querySelector('input[name="valoracion"]:checked');
+  const valoracionEquipoElement = document.querySelector('input[name="valoracion"]:checked');
+  const valoracionEquipo = valoracionEquipoElement ? valoracionEquipoElement.value : null;
   const ligaEquipo = document.getElementById('ligaEquipo').value;
 
   const errorNombreEquipo = document.getElementById('errorNombreEquipo');
@@ -660,37 +654,48 @@ function guardarEquipoEstrella(event) {
   const errorligaEquipo = document.getElementById('errorligaEquipo');
 
   errorNombreEquipo.style.display = 'none';
-  errorNombreEquipo.textContent = '';
   errorValoracionEquipo.style.display = 'none';
-  errorValoracionEquipo.textContent = '';
   errorligaEquipo.style.display = 'none';
+  errorNombreEquipo.textContent = '';
+  errorValoracionEquipo.textContent = '';
   errorligaEquipo.textContent = '';
+
+  let detalleValido = true;
 
   if (!nombreEquipo) {
     errorNombreEquipo.style.display = 'block';
     errorNombreEquipo.textContent = 'El nombre del equipo es requerido';
+    detalleValido = false;
   } else if (nombreEquipo.length < 2) {
     errorNombreEquipo.style.display = 'block';
     errorNombreEquipo.textContent = 'El nombre del equipo debe tener al menos 2 caracteres';
+    detalleValido = false;
   } else if (nombreEquipo.length > 20) {
     errorNombreEquipo.style.display = 'block';
     errorNombreEquipo.textContent = 'El nombre del equipo debe tener menos de 20 caracteres';
+    detalleValido = false;
   }
 
   if (!valoracionEquipo) {
     errorValoracionEquipo.style.display = 'block';
     errorValoracionEquipo.textContent = 'La valoración del equipo es requerida';
+    detalleValido = false;
   }
 
   if (!ligaEquipo) {
     errorligaEquipo.style.display = 'block';
     errorligaEquipo.textContent = 'La liga del equipo es requerida';
+    detalleValido = false;
+  }
+
+  if (!detalleValido) {
+    return;
   }
 
   equipoEstrella = [];
   equipoEstrella[0] = ['manager', managerInfo];
-  equipoEstrella[1] = ['jugadores', equipo];
-  equipoEstrella[2] = ['detalle', [nombreEquipo, valoracionEquipo.value, ligaEquipo]];
+  equipoEstrella[1] = ['jugadores', Object.values(equipo)];
+  equipoEstrella[2] = ['detalle', [nombreEquipo, valoracionEquipo, ligaEquipo]];
 
   jugadoresSeleccionadosGlobal = [];
 
@@ -698,6 +703,7 @@ function guardarEquipoEstrella(event) {
   misEquipos.push(equipoEstrella);
   localStorage.setItem('misEquipos', JSON.stringify(misEquipos));
   formEquipoEstrella.reset();
+  cerrarModal();
   paginaMisEquipos();
 }
 
@@ -705,7 +711,9 @@ function editarEquipo() {
   const equipoIndex = misEquipos.findIndex(equipo => equipo[2][1][0] === this.parentElement.parentElement.querySelector('h3').textContent);
   if (equipoIndex !== -1) {
     const equipo = misEquipos[equipoIndex];
+
     modalOverlay.style.display = "block";
+
     contenidoModal.innerHTML = `
       <form class="formDetalle">
         <h3>Edita los detalles de tu Equipo Estrella</h3>
@@ -747,8 +755,10 @@ function editarEquipo() {
     `;
 
     const guardarDetalle = document.getElementById("guardarDetalle");
+
     guardarDetalle.addEventListener("click", function (event) {
       event.preventDefault();
+      
       const nombreEquipo = document.getElementById('nombreEquipo').value;
       const valoracionEquipo = document.querySelector('input[name="valoracion"]:checked');
       const ligaEquipo = document.getElementById('ligaEquipo').value;
@@ -795,7 +805,7 @@ function editarEquipo() {
       equipo[2][1][2] = ligaEquipo;
 
       localStorage.setItem('misEquipos', JSON.stringify(misEquipos));
-      
+
       cerrarModal();
       paginaMisEquipos();
     });
@@ -806,6 +816,7 @@ function borrarEquipo() {
   modalOverlay.style.display = "block";
   contenidoModal.innerHTML = '';
   contenidoModal.classList.add('contenidoBorrar');
+
   contenidoModal.innerHTML = `
     <p>¿Estás seguro que deseas borrar este equipo?</p>
     <div>
@@ -837,7 +848,7 @@ function modalFooter() {
     <p><span>Nombre de la carrera:</span> Diseño Multimedial</p>
     <p><span>Nombre de la materia:</span> Diseño y Programación Web 1</p>
     <p><span>Cuatrimestre:</span> 3ro</p>
-    <p><span>Sigla de la comisión:</span></p>
+    <p><span>Sigla de la comisión:</p>
     <p><span>Turno:</span> Mañana</p>
     <p><span>Apellido y Nombre Alumno:</span> Bernath Lucas</p>
     <p><span>Apellido y Nombre Docente:</span> Toyos Omar</p>
