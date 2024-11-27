@@ -435,6 +435,7 @@ footer .botonPrimario:hover {
   flex-wrap: nowrap;
   flex-direction: column;
   align-items: start;
+  gap: 1rem;
 }
 
 #modalOverlay .contenidoFooter p {
@@ -445,6 +446,13 @@ footer .botonPrimario:hover {
 
 #modalOverlay .contenidoFooter span {
   font-weight: 600;
+}
+
+#contenidoModal .fotoFooter {
+  width: 5rem;
+  height: 5rem;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .misEquiposEstrellas {
@@ -698,6 +706,11 @@ footer .botonPrimario:hover {
   .contenidoBorrar div {
     justify-content: center;
     flex-direction: row;
+  }
+
+  #contenidoModal .fotoFooter {
+    width: 7.5rem;
+    height: 7.5rem;
   }
 }
 
@@ -980,6 +993,11 @@ footer .botonPrimario:hover {
 
   .misEquiposEstrellas {
     gap: 3rem;
+  }
+
+  #contenidoModal .fotoFooter {
+    width: 10rem;
+    height: 10rem;
   }
 }
 

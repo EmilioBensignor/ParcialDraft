@@ -854,7 +854,7 @@ function modalFooter() {
     <p><span>Apellido y Nombre Alumno:</span> Bernath Lucas</p>
     <p><span>Apellido y Nombre Docente:</span> Toyos Omar</p>
     <p><span>Instancia de Evaluación:</span> Segundo Parcial</p>
-    FALTA LA FOTOOOO Y SIGLA Y ANIO
+    <img class="fotoFooter" src="web_app/imagenes/foto-lucas-bernath.jpg" alt="Foto Lucas Bernath" />
   `;
 
   contenidoModal.classList.add('contenidoFooter');

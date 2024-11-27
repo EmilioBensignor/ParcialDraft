@@ -1,1 +1,25 @@
-// FUNCIONALIDAD DE LA APP
+INTRODUCCIÓN
+
+Equipo Estrella es el nuevo juego de fútbol donde vas a crear un equipo con tus jugadores favoritos. 
+Sigue los diferentes pasos para poder ir creando tu equipo estrella.
+
+CREA TU MANAGER
+
+Aqui vas a poder crear personalizadamente la información de tu manager y hasta elegir el avatar del mismo.
+
+CREA TU EQUIPO
+
+Una vez que elijas la formación que más te guste, vas a poder elegir los 11 jugadores que van a integrar tu equipo.
+Pero no tan rápido, sino todos tendríamos al Barcelona del 2010. Los jugadores que te vayan tocando serán aleatorios, así que elegí bien porque ese será tu equipo.
+¡Y no te preocupes!
+Si cerras la aplicación luego de crear a tu equipo, vas a tenerlos guardados en "Mis Equipos" donde van a ir quedando los equipos que vayas creando.
+
+MIS EQUIPOS
+
+En tus equipos podrás ver todos los equipos creados con un resumen de la creación del mismo. Y para que no te aburras, el jugador destacado irá cambiando para que puedas ir acordandote de los grandiosos jugadores que hayas elegido.
+
+¿Y si no los quiero ver más o quiero editar el detalle de mi equipo?
+
+Cada equipo va a tener la opción editar la información de detalle y borrarlo si te cansaste de verlo.
+
+¡No esperes más y crea ya tu Equipo Estrella!
