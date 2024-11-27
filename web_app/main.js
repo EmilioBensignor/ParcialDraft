@@ -847,13 +847,14 @@ function modalFooter() {
   contenidoModal.innerHTML = `
     <p><span>Nombre de la carrera:</span> Diseño Multimedial</p>
     <p><span>Nombre de la materia:</span> Diseño y Programación Web 1</p>
+    <p><span>Año:</span> </p>
     <p><span>Cuatrimestre:</span> 3ro</p>
     <p><span>Sigla de la comisión:</p>
     <p><span>Turno:</span> Mañana</p>
     <p><span>Apellido y Nombre Alumno:</span> Bernath Lucas</p>
     <p><span>Apellido y Nombre Docente:</span> Toyos Omar</p>
     <p><span>Instancia de Evaluación:</span> Segundo Parcial</p>
-    FALTA LA FOTOOOO Y SIGLA
+    FALTA LA FOTOOOO Y SIGLA Y ANIO
   `;
 
   contenidoModal.classList.add('contenidoFooter');
